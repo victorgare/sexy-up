@@ -1,0 +1,10 @@
+{
+    "emmet.syntaxProfiles": {
+        "html": {
+            "attr_quotes": "single"
+        },
+        "jsx": {
+            "self_closing_tag": true
+        }
+    }
+}
