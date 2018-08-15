@@ -27,10 +27,19 @@ class Root extends Component {
                 <div>
                     <Navigation />
                 </div>
-                <div className="row">
-                    {this.renderComponent()}
+
+                <hr className="invisible" />
+
+                <div className="col-lg-8 offset-lg-2">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-lg-12">
+                                {this.renderComponent()}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </div >
         );
     }
 }
