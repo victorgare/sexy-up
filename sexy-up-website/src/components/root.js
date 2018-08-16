@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import Navigation from "./navigation/navigation";
 import Buscar from "./buscar/buscar";
+import { BrowserRouter, Route } from 'react-router-dom';
+import Servicos from './servicos/servicos';
+import LojasProximas from "./lojas-proximas/lojas-proximas";
 
 class Root extends Component {
     constructor(props) {
@@ -16,8 +19,6 @@ class Root extends Component {
 
         if (path === "/") {
             return <Buscar />
-        } else {
-            return this.state.children;
         }
     }
 
@@ -34,7 +35,15 @@ class Root extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-12">
-                                {this.renderComponent()}
+                                {/* {this.renderComponent()} */}
+                                <BrowserRouter>
+                                    <div>
+                                        <Route exact path="/" component={Buscar} />
+                                        <Route path="/buscar" component={Buscar} />
+                                        <Route path="/servicos" component={Servicos} />
+                                        <Route path="/lojasproximas" component={LojasProximas} />
+                                    </div>
+                                </BrowserRouter>
                             </div>
                         </div>
                     </div>
