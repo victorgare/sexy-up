@@ -4,6 +4,7 @@ import Buscar from "./buscar/buscar";
 import { BrowserRouter, Route } from 'react-router-dom';
 import Servicos from './servicos/servicos';
 import LojasProximas from "./lojas-proximas/lojas-proximas";
+import Logotipo from "./logotipo/logotipo";
 
 class Root extends Component {
     constructor(props) {
@@ -11,14 +12,6 @@ class Root extends Component {
 
         this.state = {
             firstLoad: true
-        }
-    }
-
-    renderComponent() {
-        const path = this.props.location.pathname;
-
-        if (path === "/") {
-            return <Buscar />
         }
     }
 
@@ -35,7 +28,8 @@ class Root extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-12">
-                                {/* {this.renderComponent()} */}
+                                <Logotipo />
+                                
                                 <BrowserRouter>
                                     <div>
                                         <Route exact path="/" component={Buscar} />
