@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace SexyUp.Web
 {
@@ -23,8 +22,27 @@ namespace SexyUp.Web
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/bootstrap.css"));
+
+            #region CSS
+            // Font Awesome icons style
+            bundles.Add(new StyleBundle("~/Vendor/fontawesome/css").Include(
+                "~/Vendor/fontawesome/css/font-awesome.min.css", new CssRewriteUrlTransform()));
+
+            bundles.Add(new StyleBundle("~/Vendor/bootstrap/css").Include(
+                "~/Vendor/bootstrap/css/bootstrap.min.css", new CssRewriteUrlTransform()));
+
+            bundles.Add(new StyleBundle("~/Custom").Include(
+                "~/Content/site.css"));
+            #endregion
+
+            #region JS
+            bundles.Add(new ScriptBundle("~/Vendor/bootstrap/js").Include(
+                "~/Vendor/bootstrap/js/jquery-3.3.1.slim.min.js",
+                "~/Vendor/bootstrap/js/popper.min.js",
+                "~/Vendor/bootstrap/js/bootstrap.min.js"));
+            #endregion
+
         }
     }
 }
