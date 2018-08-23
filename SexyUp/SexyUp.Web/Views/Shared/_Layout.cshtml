@@ -5,50 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sexy Up!</title>
 
-    @Styles.Render("~/Vendor/bootstrap/css")
-    @Styles.Render("~/Vendor/fontawesome/css")
+    @Styles.Render("~/vendor/bootstrap/css")
+    @Styles.Render("~/vendor/font-awesome/css")
+    @Styles.Render("~/vendor/bootstrap-select/css")
+    @Styles.Render("~/vendor/nouislider/css")
+    @Styles.Render("~/content/custom-font-icons/css")
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700">
+    @Styles.Render("~/vendor/owl-carousel/css")
+    @Styles.Render("~/content/theme/css")
 
-    @* Este css vem por ultimo, é onde esta o layout customizado *@
-    @Styles.Render("~/Custom")
+    @Scripts.Render("~/scripts/modernizr/js")
 
 </head>
 <body>
+    @Html.Partial("_Navigation")
     <div>
-        <nav class="navbar">
-            <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#menu-itens" aria-controls="menu-itens" aria-expanded="false" aria-label="Menus">
-                <span class="fa fa-bars"></span>
-            </button>
-
-            <div class="navbar-collapse collapse dropdown-menu bigmenu" id="menu-itens">
-                <table>
-                    <tbody class="text-center">
-                        <tr>
-                            <td class="nav-item">
-                                <a class="nav-link" href="@Url.Action("Index", "Home")">
-                                    <i class="fa fa-search"></i>
-                                    <p>Buscar</p>
-                                </a>
-                            </td>
-                            <td class="nav-item">
-                                <a class="nav-link" href="@Url.Action("Index", "Home")">
-                                    <i class="fa fa-map-marker text-danger"></i>
-                                    <p>Lojas Próximas</p>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="nav-item">
-                                <a class="nav-link" href="@Url.Action("Index", "Home")">
-                                    <i class="fa fa-handshake-o text-warning"></i>
-                                    <p>Serviços</p>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </nav>
-
         <hr class="invisible" />
 
         <div class="col-lg-8 offset-2">
@@ -62,7 +33,15 @@
         </div>
     </div>
 
-    @Scripts.Render("~/Vendor/bootstrap/js")
+    @Scripts.Render("~/vendor/jquery/js")
+    @Scripts.Render("~/vendor/popper/js")
+    @Scripts.Render("~/vendor/bootstrap/js")
+    @Scripts.Render("~/vendor/jquery-cookie/js")
+    @Scripts.Render("~/vendor/owl-carousel/js")
+    @Scripts.Render("~/vendor/bootstrap-select/js")
+    @Scripts.Render("~/vendor/nouislider/js")
+    @Scripts.Render("~/vendor/jquery-countdown/js")
+    @Scripts.Render("~/scripts/main/js")
     @RenderSection("scripts", false)
 </body>
 </html>
