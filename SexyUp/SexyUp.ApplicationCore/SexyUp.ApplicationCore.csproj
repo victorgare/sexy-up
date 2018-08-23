@@ -48,5 +48,15 @@
     <Folder Include="Interfaces\Service\" />
     <Folder Include="Services\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SexyUp.Infrastructure\SexyUp.Infrastructure.csproj">
+      <Project>{f278fbee-a68c-4fce-8da2-1d40b778a70d}</Project>
+      <Name>SexyUp.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SexyUp.Utils\SexyUp.Utils.csproj">
+      <Project>{a1b212a6-5396-491c-bee5-b41aeaff9daf}</Project>
+      <Name>SexyUp.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

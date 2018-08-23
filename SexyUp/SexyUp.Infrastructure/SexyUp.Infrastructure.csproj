@@ -57,5 +57,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SexyUp.Utils\SexyUp.Utils.csproj">
+      <Project>{a1b212a6-5396-491c-bee5-b41aeaff9daf}</Project>
+      <Name>SexyUp.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

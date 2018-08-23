@@ -196,6 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -286,6 +287,7 @@
     <Content Include="Vendor\fontawesome\fonts\FontAwesome.otf" />
     <Content Include="Views\Shared\_Logotipo.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -296,6 +298,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SexyUp.ApplicationCore\SexyUp.ApplicationCore.csproj">
+      <Project>{4ddddd18-3c90-4edb-8ba5-f7cb622bf859}</Project>
+      <Name>SexyUp.ApplicationCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SexyUp.Infrastructure\SexyUp.Infrastructure.csproj">
+      <Project>{f278fbee-a68c-4fce-8da2-1d40b778a70d}</Project>
+      <Name>SexyUp.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
