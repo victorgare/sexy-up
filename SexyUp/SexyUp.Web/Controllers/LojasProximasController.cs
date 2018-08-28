@@ -2,10 +2,9 @@
 
 namespace SexyUp.Web.Controllers
 {
-    [Authorize]
-    public class DashboardController : Controller
+    public class LojasProximasController : Controller
     {
-        // GET: Dashboard
+        // GET: LojasProximas
         public ActionResult Index()
         {
             return View();

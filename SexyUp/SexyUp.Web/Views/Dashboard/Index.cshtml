@@ -5,3 +5,8 @@
 
 <h2>Index</h2>
 
+@using (Html.BeginForm("LogOff", "Account", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn-link"></button>
+}

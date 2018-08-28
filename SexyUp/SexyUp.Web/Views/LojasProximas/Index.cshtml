@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<input type="text" id="SearchTerm" value="Sex Shop" />
+<div id="map">
+
+</div>
+
+@section Scripts {
+    @*   @Scripts.Render("~/scripts/main/js")*@
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-4VmwOwKP9YQ"></script>
+    @Scripts.Render("~/scripts/main/js")
+}
+
