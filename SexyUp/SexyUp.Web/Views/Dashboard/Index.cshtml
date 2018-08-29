@@ -1,12 +1,17 @@
-﻿
+﻿@using Microsoft.AspNet.Identity
+
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-@using (Html.BeginForm("LogOff", "Account", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-    <button type="submit" class="btn-link"></button>
-}
+<div class="row">
+    <div class="customer-sidebar col-xl-3 col-lg-4 mb-md-5">
+        <div class="customer-profile">
+            <h5>@User.Identity.GetUserName()</h5>
+            <p class="text-muted text-small">@(User.IsInRole("Administrador") ? "Administrador" : "Usuário")</p>
+        </div>
+        <nav class="list-group customer-nav">
+            <a href="customer-orders.html" class="active list-group-item d-flex justify-content-between align-items-center"><span><span class="icon icon-bag"></span>Orders</span><small class="badge badge-pill badge-light">5</small></a><a href="customer-account.html" class="list-group-item d-flex justify-content-between align-items-center"><span><span class="icon icon-profile"></span>Profile</span></a><a href="customer-addresses.html" class="list-group-item d-flex justify-content-between align-items-center"><span><span class="icon icon-map"></span>Addresses</span></a><a href="customer-login.html" class="list-group-item d-flex justify-content-between align-items-center"><span><span class="fa fa-sign-out"></span>Log out</span></a>
+        </nav>
+    </div>
+</div>
