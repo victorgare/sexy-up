@@ -65,7 +65,10 @@ namespace SexyUp.Web.ViewModels
     public class RegisterViewModel
     {
         [Display(Name = "Nome"), Required]
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+
+        [Display(Name = "Sobrenome"), Required]
+        public string LastName { get; set; }
 
         [Required]
         [EmailAddress]

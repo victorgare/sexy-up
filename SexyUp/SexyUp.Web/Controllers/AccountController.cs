@@ -1,11 +1,11 @@
-﻿using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using AspNet.Identity.MySQL;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using SexyUp.ApplicationCore.Entities;
 using SexyUp.Web.ViewModels;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 
 namespace SexyUp.Web.Controllers
 {
@@ -90,6 +90,7 @@ namespace SexyUp.Web.Controllers
             {
                 return View("Error");
             }
+
             return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
 
@@ -109,7 +110,8 @@ namespace SexyUp.Web.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = SignInManager.TwoFactorSignIn(model.Provider, model.Code, model.RememberMe, model.RememberBrowser);
+            var result =
+                SignInManager.TwoFactorSignIn(model.Provider, model.Code, model.RememberMe, model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -139,7 +141,13 @@ namespace SexyUp.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName
+                };
                 var result = UserManager.Create(user, model.Password);
                 UserManager.AddToRole(user.Id, "Cliente");
 
@@ -155,6 +163,7 @@ namespace SexyUp.Web.Controllers
 
                     return RedirectToAction("Index", "Dashboard");
                 }
+
                 AddErrors(result);
             }
 
@@ -171,6 +180,7 @@ namespace SexyUp.Web.Controllers
             {
                 return View("Error");
             }
+
             var result = UserManager.ConfirmEmail(userId, code);
             return View(result.Succeeded ? nameof(ConfirmEmail) : "Error");
         }
@@ -238,17 +248,20 @@ namespace SexyUp.Web.Controllers
             {
                 return View(model);
             }
+
             var user = UserManager.FindByName(model.Email);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
                 return RedirectToAction(nameof(ResetPasswordConfirmation), "Account");
             }
+
             var result = UserManager.ResetPassword(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
                 return RedirectToAction(nameof(ResetPasswordConfirmation), "Account");
             }
+
             AddErrors(result);
             return View();
         }
@@ -269,7 +282,8 @@ namespace SexyUp.Web.Controllers
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
             // Request a redirect to the external login provider
-            return new ChallengeResult(provider, Url.Action(nameof(ExternalLoginCallback), "Account", new { ReturnUrl = returnUrl }));
+            return new ChallengeResult(provider,
+                Url.Action(nameof(ExternalLoginCallback), "Account", new { ReturnUrl = returnUrl }));
         }
 
         //
@@ -282,9 +296,12 @@ namespace SexyUp.Web.Controllers
             {
                 return View("Error");
             }
+
             var userFactors = UserManager.GetValidTwoFactorProviders(userId);
-            var factorOptions = userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
-            return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
+            var factorOptions = userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose })
+                .ToList();
+            return View(new SendCodeViewModel
+            { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
 
         //
@@ -304,7 +321,9 @@ namespace SexyUp.Web.Controllers
             {
                 return View("Error");
             }
-            return RedirectToAction(nameof(VerifyCode), new { Provider = model.SelectedProvider, model.ReturnUrl, model.RememberMe });
+
+            return RedirectToAction(nameof(VerifyCode),
+                new { Provider = model.SelectedProvider, model.ReturnUrl, model.RememberMe });
         }
 
         //
@@ -332,7 +351,8 @@ namespace SexyUp.Web.Controllers
                     // If the user does not have an account, then prompt the user to create an account
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return View(nameof(ExternalLoginConfirmation), new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+                    return View(nameof(ExternalLoginConfirmation),
+                        new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
             }
         }
 
@@ -356,6 +376,7 @@ namespace SexyUp.Web.Controllers
                 {
                     return View(nameof(ExternalLoginFailure));
                 }
+
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = UserManager.Create(user);
                 if (result.Succeeded)
@@ -367,6 +388,7 @@ namespace SexyUp.Web.Controllers
                         return RedirectToLocal(returnUrl);
                     }
                 }
+
                 AddErrors(result);
             }
 
@@ -413,6 +435,7 @@ namespace SexyUp.Web.Controllers
         }
 
         #region Helpers
+
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -432,6 +455,7 @@ namespace SexyUp.Web.Controllers
             {
                 return Redirect(returnUrl);
             }
+
             return RedirectToAction("Index", "Dashboard");
         }
 
@@ -460,9 +484,12 @@ namespace SexyUp.Web.Controllers
                 {
                     properties.Dictionary[XsrfKey] = UserId;
                 }
+
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }
+
         #endregion
+
     }
 }

@@ -16,20 +16,29 @@
                     @Html.AntiForgeryToken()
 
                     <div class="form-group">
-                        @Html.LabelFor(c => c.Name, new { @class = "form-label" })
-                        @Html.TextBoxFor(c => c.Name, new { @class = "form-control" })
+                        @Html.LabelFor(c => c.FirstName, new { @class = "form-label" })
+                        @Html.TextBoxFor(c => c.FirstName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(c => c.FirstName, null, new { @class = "badge badge-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(c => c.LastName, new { @class = "form-label" })
+                        @Html.TextBoxFor(c => c.LastName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(c => c.LastName, null, new { @class = "badge badge-danger" })
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(c => c.Email, new { @class = "form-label" })
                         @Html.TextBoxFor(c => c.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(c => c.Email, null, new { @class = "badge badge-danger" })
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(c => c.Password, new { @class = "form-label" })
                         @Html.PasswordFor(c => c.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(c => c.Password, null, new { @class = "badge badge-danger" })
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(c => c.ConfirmPassword, new { @class = "form-label" })
                         @Html.PasswordFor(c => c.ConfirmPassword, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(c => c.ConfirmPassword, null, new { @class = "badge badge-danger" })
                     </div>
                     <div class="form-group text-center">
                         <button type="submit" class="btn btn-primary"><i class="icon-profile"></i> Cadastrar</button>

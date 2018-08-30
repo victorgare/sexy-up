@@ -1,12 +1,13 @@
-﻿using System;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using AspNet.Identity.MySQL;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using SexyUp.Web.ViewModels;
+using SexyUp.ApplicationCore.Entities;
+using SexyUp.Infrastructure.Context;
+using System;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace SexyUp.Web
 {
@@ -40,7 +41,7 @@ namespace SexyUp.Web
         {
             var manager = new ApplicationUserManager(
                 new UserStore<ApplicationUser>(
-                    context.Get<ApplicationDbContext>()));
+                    context.Get<ApplicationDatabaseContext>()));
 
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
@@ -97,7 +98,7 @@ namespace SexyUp.Web
 
         public override Task<ClaimsIdentity> CreateUserIdentityAsync(ApplicationUser user)
         {
-            return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager);
+            return user.GenerateUserIdentity((ApplicationUserManager)UserManager);
         }
 
         public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)

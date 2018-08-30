@@ -1,0 +1,92 @@
+﻿
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sexy Up!</title>
+
+    @Styles.Render("~/vendor/bootstrap/css")
+    @Styles.Render("~/vendor/font-awesome/css")
+    @Styles.Render("~/vendor/bootstrap-select/css")
+    @Styles.Render("~/vendor/nouislider/css")
+    @Styles.Render("~/content/custom-font-icons/css")
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700">
+    @Styles.Render("~/vendor/owl-carousel/css")
+    @Styles.Render("~/content/theme/css")
+
+    @Scripts.Render("~/scripts/modernizr/js")
+
+</head>
+<body>
+    @Html.Partial("_Navigation")
+    <div>
+        <hr class="invisible" />
+        <div class="col-lg-12">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="customer-sidebar col-xl-3 col-lg-4 mb-md-5">
+                                <div class="customer-profile">
+                                    <h5>@User.Identity.Name</h5>
+                                    <p class="text-muted text-small">@(User.IsInRole("Administrador") ? "Administrador" : "Usuário")</p>
+                                </div>
+                                <nav class="list-group customer-nav">
+                                    <a href="customer-orders.html" class="active list-group-item d-flex justify-content-between align-items-center">
+                                        <span>
+                                            <span class="icon icon-bag"></span>Orders
+                                        </span>
+                                        <small class="badge badge-pill badge-light">5</small>
+                                    </a>
+
+                                    <a href="customer-account.html" class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span>
+                                            <span class="icon icon-profile"></span>Profile
+                                        </span>
+                                    </a>
+
+                                    <a href="customer-addresses.html" class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span>
+                                            <span class="icon icon-map"></span>Addresses
+                                        </span>
+                                    </a>
+
+                                    @* Log out *@
+                                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span>
+                                                <span class="fa fa-sign-out"></span>Log out
+                                            </span>
+                                        </button>
+                                    }
+                                </nav>
+                            </div>
+
+                            <div class="col-lg-8 col-xl-9 pl-lg-3">
+                                @RenderBody()
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/vendor/jquery/js")
+    @Scripts.Render("~/vendor/popper/js")
+    @Scripts.Render("~/vendor/bootstrap/js")
+    @Scripts.Render("~/vendor/jquery-cookie/js")
+    @Scripts.Render("~/vendor/owl-carousel/js")
+    @Scripts.Render("~/vendor/bootstrap-select/js")
+    @Scripts.Render("~/vendor/nouislider/js")
+    @Scripts.Render("~/vendor/jquery-countdown/js")
+    @Scripts.Render("~/scripts/main/js")
+    @RenderSection("scripts", false)
+</body>
+</html>
