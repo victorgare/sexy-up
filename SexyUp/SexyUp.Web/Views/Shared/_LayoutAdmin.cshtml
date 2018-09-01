@@ -33,7 +33,7 @@
                         <div class="row">
                             <div class="customer-sidebar col-xl-3 col-lg-4 mb-md-5">
                                 <div class="customer-profile">
-                                    <h5>@(((ClaimsIdentity)User.Identity).FindFirst("FirstName").Value)</h5>
+                                    <h5>@(((ClaimsIdentity)User.Identity).FindFirst("FirstName")?.Value)</h5>
                                     <p class="text-muted text-small">@(User.IsInRole("Administrador") ? "Administrador" : "Usuário")</p>
                                 </div>
                                 <nav class="list-group customer-nav">

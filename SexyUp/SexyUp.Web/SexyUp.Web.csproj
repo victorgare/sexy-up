@@ -241,6 +241,7 @@
     </Compile>
     <Compile Include="Libraries\FlashMessage\FlashMessage.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
+    <Compile Include="ViewModels\AdminUser\AdminUserViewModel.cs" />
     <Compile Include="ViewModels\Home\HomeViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -457,6 +458,9 @@
     <Content Include="Vendor\font-awesome\fonts\FontAwesome.otf" />
     <Content Include="Vendor\jquery.cookie\component.json" />
     <Content Include="Vendor\jquery.cookie\cookie.jquery.json" />
+    <Content Include="Views\AdminUser\Register.cshtml" />
+    <Content Include="Views\AdminUser\Edit.cshtml" />
+    <Content Include="Views\AdminUser\_Partials\_Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
