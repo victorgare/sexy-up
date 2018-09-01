@@ -56,6 +56,10 @@ namespace SexyUp.Web
             bundles.Add(new StyleBundle("~/content/theme/css").Include(
                 "~/Content/style.pink.css",
                 "~/Content/custom.css"));
+
+            // toastr
+            bundles.Add(new StyleBundle("~/vendor/toastr/css").Include(
+                "~/vendor/toastr/css/toastr.min.css"));
             #endregion
 
             #region JS
@@ -99,6 +103,10 @@ namespace SexyUp.Web
             // main js
             bundles.Add(new ScriptBundle("~/scripts/main/js").Include(
                 "~/scripts/front.js"));
+
+            // toastr
+            bundles.Add(new ScriptBundle("~/vendor/toastr/js").Include(
+                "~/vendor/toastr/js/toastr.min.js"));
             #endregion
 
         }

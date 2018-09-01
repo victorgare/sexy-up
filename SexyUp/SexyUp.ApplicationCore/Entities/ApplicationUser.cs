@@ -17,8 +17,7 @@ namespace SexyUp.ApplicationCore.Entities
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
 
-            //var user = manager.FindById(userIdentity.GetUserId());
-            manager.AddClaim(Id, new Claim(ClaimTypes.Name, FirstName));
+            manager.AddClaim(Id, new Claim(nameof(FirstName), FirstName));
 
             return userIdentity;
         }

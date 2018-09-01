@@ -7,7 +7,6 @@ namespace SexyUp.Infrastructure.Context
     {
         public ApplicationDatabaseContext() : base("DefaultConnection")
         {
-
         }
 
         public static ApplicationDatabaseContext Create()

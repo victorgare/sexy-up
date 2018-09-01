@@ -1,4 +1,5 @@
-﻿
+﻿@using System.Security.Claims
+@using SexyUp.Web.Libraries.FlashMessage
 
 <!DOCTYPE html>
 <html>
@@ -14,6 +15,8 @@
     @Styles.Render("~/content/custom-font-icons/css")
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700">
     @Styles.Render("~/vendor/owl-carousel/css")
+    @Styles.Render("~/vendor/toastr/css")
+
     @Styles.Render("~/content/theme/css")
 
     @Scripts.Render("~/scripts/modernizr/js")
@@ -30,39 +33,41 @@
                         <div class="row">
                             <div class="customer-sidebar col-xl-3 col-lg-4 mb-md-5">
                                 <div class="customer-profile">
-                                    <h5>@User.Identity.Name</h5>
+                                    <h5>@(((ClaimsIdentity)User.Identity).FindFirst("FirstName").Value)</h5>
                                     <p class="text-muted text-small">@(User.IsInRole("Administrador") ? "Administrador" : "Usuário")</p>
                                 </div>
                                 <nav class="list-group customer-nav">
-                                    <a href="customer-orders.html" class="active list-group-item d-flex justify-content-between align-items-center">
-                                        <span>
-                                            <span class="icon icon-bag"></span>Orders
-                                        </span>
-                                        <small class="badge badge-pill badge-light">5</small>
-                                    </a>
+                                    @*<a href="customer-orders.html" class="active list-group-item d-flex justify-content-between align-items-center">
+                                            <span>
+                                                <span class="icon icon-bag"></span>Orders
+                                            </span>
+                                            <small class="badge badge-pill badge-light">5</small>
+                                        </a>*@
 
-                                    <a href="customer-account.html" class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span>
-                                            <span class="icon icon-profile"></span>Profile
-                                        </span>
-                                    </a>
+                                    @*<a href="customer-account.html" class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span>
+                                                <span class="icon icon-profile"></span>Profile
+                                            </span>
+                                        </a>*@
 
-                                    <a href="customer-addresses.html" class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="@Url.Action("Index", "AdminUser")" class="list-group-item d-flex justify-content-between align-items-center">
                                         <span>
-                                            <span class="icon icon-map"></span>Addresses
+                                            <span class="icon icon-administrator"></span>Administradores
                                         </span>
                                     </a>
 
                                     @* Log out *@
-                                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post))
+                                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @class = "list-group-item d-flex justify-content-between align-items-center form-pointer" }))
                                     {
                                         @Html.AntiForgeryToken()
-                                        <button type="submit" class="list-group-item d-flex justify-content-between align-items-center">
+                                        <button type="submit" class="btn-no-style d-flex w-100 h-100">
                                             <span>
                                                 <span class="fa fa-sign-out"></span>Log out
+
                                             </span>
                                         </button>
                                     }
+
                                 </nav>
                             </div>
 
@@ -86,7 +91,12 @@
     @Scripts.Render("~/vendor/bootstrap-select/js")
     @Scripts.Render("~/vendor/nouislider/js")
     @Scripts.Render("~/vendor/jquery-countdown/js")
+    @Scripts.Render("~/vendor/toastr/js")
     @Scripts.Render("~/scripts/main/js")
+
+    <!-- Flash Messages -->
+    @Html.RenderFlashMessage()
+
     @RenderSection("scripts", false)
 </body>
 </html>

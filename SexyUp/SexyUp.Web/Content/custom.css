@@ -1,1 +1,19 @@
 /* your styles go here */
+
+.btn-no-style {
+    display: inline-block;
+    border: none;
+    margin: 0;
+    text-decoration: none;
+    font-family: sans-serif;
+    cursor: pointer;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.form-pointer {
+    cursor: pointer;
+}

@@ -4,37 +4,19 @@ using Microsoft.Owin.Security;
 using SexyUp.ApplicationCore.Entities;
 using SexyUp.Web.ViewModels;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
+using SexyUp.Web.Controllers.Common;
 
 namespace SexyUp.Web.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseAccountController
     {
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
 
         public AccountController()
         {
-        }
-
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
-
-        public ApplicationSignInManager SignInManager
-        {
-            get => _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            private set => _signInManager = value;
-        }
-
-        public ApplicationUserManager UserManager
-        {
-            get => _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            private set => _userManager = value;
         }
 
         //
@@ -414,26 +396,6 @@ namespace SexyUp.Web.Controllers
             return View();
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (_userManager != null)
-                {
-                    _userManager.Dispose();
-                    _userManager = null;
-                }
-
-                if (_signInManager != null)
-                {
-                    _signInManager.Dispose();
-                    _signInManager = null;
-                }
-            }
-
-            base.Dispose(disposing);
-        }
-
         #region Helpers
 
         // Used for XSRF protection when adding external logins
@@ -490,6 +452,12 @@ namespace SexyUp.Web.Controllers
         }
 
         #endregion
+
+        public void Update()
+        {
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            UserManager.AddClaim(user.Id, new Claim("FirstName", user.FirstName));
+        }
 
     }
 }
