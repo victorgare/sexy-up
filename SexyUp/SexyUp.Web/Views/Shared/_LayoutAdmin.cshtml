@@ -1,5 +1,6 @@
 ﻿@using System.Security.Claims
 @using SexyUp.Web.Libraries.FlashMessage
+@using Roles = SexyUp.ApplicationCore.Enum.Roles
 
 <!DOCTYPE html>
 <html>
@@ -20,6 +21,8 @@
     @Styles.Render("~/content/theme/css")
 
     @Scripts.Render("~/scripts/modernizr/js")
+
+    @RenderSection("styles", false)
 
 </head>
 <body>
@@ -50,11 +53,19 @@
                                             </span>
                                         </a>*@
 
-                                    <a href="@Url.Action("Index", "AdminUser")" class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span>
-                                            <span class="icon icon-administrator"></span>Administradores
-                                        </span>
-                                    </a>
+                                    @if (User.IsInRole(nameof(Roles.Administrador)))
+                                    {
+                                        <a href="@Url.Action("Index", "AdminUser")" class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span>
+                                                <span class="icon icon-administrator"></span>Administradores
+                                            </span>
+                                        </a>
+                                        <a href="@Url.Action("Index", "FornecedorUser")" class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span>
+                                                <span class="fa fa-cube"></span>Fornecedores
+                                            </span>
+                                        </a>
+                                    }
 
                                     @* Log out *@
                                     @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @class = "list-group-item d-flex justify-content-between align-items-center form-pointer" }))
@@ -62,7 +73,7 @@
                                         @Html.AntiForgeryToken()
                                         <button type="submit" class="btn-no-style d-flex w-100 h-100">
                                             <span>
-                                                <span class="fa fa-sign-out"></span>Log out
+                                                <span class="fa fa-sign-out"></span>Sair
 
                                             </span>
                                         </button>

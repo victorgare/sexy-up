@@ -5,13 +5,14 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using SexyUp.ApplicationCore.Entities;
+using SexyUp.ApplicationCore.Enum;
 using SexyUp.Infrastructure.Context;
 using SexyUp.Web.Libraries.FlashMessage;
 using SexyUp.Web.ViewModels.AdminUser;
 
 namespace SexyUp.Web.Controllers
 {
-    //[Authorize]
+    [Authorize(Roles = nameof(Roles.Administrador))]
     public class AdminUserController : BaseAccountController
     {
 
@@ -19,9 +20,9 @@ namespace SexyUp.Web.Controllers
         {
             using (var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDatabaseContext())))
             {
-                var role = roleManager.FindByName("Administrador").Users.FirstOrDefault();
+                var role = roleManager.FindByName(nameof(Roles.Administrador));
 
-                var users = UserManager.Users.Where(u => u.Roles.Select(r => r.RoleId).Contains(role.RoleId)).ToList();
+                var users = UserManager.Users.Where(u => u.Roles.Select(r => r.RoleId).Contains(role.Id)).ToList();
 
                 return View(users);
 
@@ -56,15 +57,15 @@ namespace SexyUp.Web.Controllers
             var result = UserManager.Create(user, "Admin@1234");
             if (result.Succeeded)
             {
-                UserManager.AddToRole(user.Id, "Administrador");
+                UserManager.AddToRole(user.Id, nameof(Roles.Administrador));
 
                 FlashMessage.Success("Criado com sucesso");
 
-                return RedirectToAction("Index", "AdminUser");
+                return RedirectToAction(nameof(Index), "AdminUser");
             }
 
             FlashMessage.Error(result.Errors.FirstOrDefault());
-            return View("Register", viewModel);
+            return View(nameof(Register), viewModel);
         }
 
         #endregion

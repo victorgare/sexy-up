@@ -49,6 +49,9 @@
     <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.5.8.7\lib\net46\CommonServiceLocator.dll</HintPath>
     </Reference>
+    <Reference Include="EntityValidation, Version=1.0.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityValidation.1.0.11\lib\net46\EntityValidation.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel" />
@@ -234,14 +237,18 @@
     <Compile Include="Controllers\AdminUserController.cs" />
     <Compile Include="Controllers\Common\BaseAccountController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\FornecedorUserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LojasProximasController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Libraries\FlashMessage\FlashMessage.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\AdminUser\AdminUserViewModel.cs" />
+    <Compile Include="ViewModels\FornecedorUser\FornecedorUserViewModel.cs" />
     <Compile Include="ViewModels\Home\HomeViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -357,6 +364,10 @@
     <Content Include="Vendor\bootstrap\js\bootstrap.min.js" />
     <Content Include="Vendor\bootstrap\js\jquery-3.3.1.slim.min.js" />
     <Content Include="Vendor\bootstrap\js\popper.min.js" />
+    <Content Include="Vendor\datatables\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Vendor\datatables\js\datatable-config.js" />
+    <Content Include="Vendor\datatables\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Vendor\datatables\js\jquery.dataTables.min.js" />
     <Content Include="Vendor\font-awesome\css\font-awesome.css" />
     <Content Include="Vendor\font-awesome\css\font-awesome.min.css" />
     <Content Include="Vendor\font-awesome\fonts\fontawesome-webfont.svg" />
@@ -461,6 +472,9 @@
     <Content Include="Views\AdminUser\Register.cshtml" />
     <Content Include="Views\AdminUser\Edit.cshtml" />
     <Content Include="Views\AdminUser\_Partials\_Form.cshtml" />
+    <Content Include="Views\FornecedorUser\Index.cshtml" />
+    <Content Include="Views\FornecedorUser\Register.cshtml" />
+    <Content Include="Views\FornecedorUser\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

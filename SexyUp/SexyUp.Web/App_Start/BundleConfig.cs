@@ -60,6 +60,10 @@ namespace SexyUp.Web
             // toastr
             bundles.Add(new StyleBundle("~/vendor/toastr/css").Include(
                 "~/vendor/toastr/css/toastr.min.css"));
+
+            // datatables
+            bundles.Add(new StyleBundle("~/vendor/datatables/css").Include(
+                "~/vendor/datatables/css/dataTables.bootstrap4.min.css"));
             #endregion
 
             #region JS
@@ -107,6 +111,12 @@ namespace SexyUp.Web
             // toastr
             bundles.Add(new ScriptBundle("~/vendor/toastr/js").Include(
                 "~/vendor/toastr/js/toastr.min.js"));
+
+            // datatables
+            bundles.Add(new ScriptBundle("~/vendor/datatables/js").Include(
+                "~/vendor/datatables/js/jquery.dataTables.min.js",
+                "~/vendor/datatables/js/dataTables.bootstrap4.min.js",
+                "~/vendor/datatables/js/datatable-config.js"));
             #endregion
 
         }

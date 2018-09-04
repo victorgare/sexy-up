@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<SexyUp.ApplicationCore.Entities.ApplicationUser>
 
 @{
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+
 <div class="row">
     <div class="table table-responsive">
         <table class="table table-hover table-responsive-md text-center dataTable">
@@ -23,20 +25,20 @@
                         <td>@item.LastName</td>
                         <td>@item.Email</td>
                         <td>
-                            <a href="@Url.Action("Edit", "AdminUser", new {id = item.Id})" class="btn btn-sm btn-primary">
+                            <a href="@Url.Action("Edit", "FornecedorUser", new {id = item.Id})" class="btn btn-sm btn-primary">
                                 <i class="fa fa-edit"></i> Editar
                             </a>
                         </td>
                         <td>
                             @if (item.LockoutEndDateUtc > DateTime.Now)
                             {
-                                <a href="@Url.Action("Unlock", "AdminUser", new {id = item.Id})" class="btn btn-sm btn-info">
+                                <a href="@Url.Action("Unlock", "FornecedorUser", new {id = item.Id})" class="btn btn-sm btn-info">
                                     <i class="fa fa-unlock"></i> Desbloquear
                                 </a>
                             }
                             else
                             {
-                                <a href="@Url.Action("Lock", "AdminUser", new {id = item.Id})" class="btn btn-sm btn-danger">
+                                <a href="@Url.Action("Lock", "FornecedorUser", new {id = item.Id})" class="btn btn-sm btn-danger">
                                     <i class="fa fa-lock"></i> Bloquear
                                 </a>
                             }
@@ -52,7 +54,7 @@
 <hr class="invisible" />
 
 <div class="row pull-right">
-    <a href="@Url.Action("Register", "AdminUser")" class="btn btn-primary">
+    <a href="@Url.Action("Register", "FornecedorUser")" class="btn btn-primary">
         <i class="fa fa-user"></i> Cadastrar
     </a>
 </div>
