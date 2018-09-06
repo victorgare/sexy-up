@@ -12,7 +12,7 @@ namespace SexyUp.Web.ViewModels.AdminUser
         [Display(Name = "Sobrenome"), Required]
         public string LastName { get; set; }
 
-        [DataType(DataType.EmailAddress), Required]
+        [EmailAddress, Required]
         public string Email { get; set; }
     }
 }

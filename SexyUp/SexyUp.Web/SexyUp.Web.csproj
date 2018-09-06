@@ -49,8 +49,8 @@
     <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.5.8.7\lib\net46\CommonServiceLocator.dll</HintPath>
     </Reference>
-    <Reference Include="EntityValidation, Version=1.0.11.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityValidation.1.0.11\lib\net46\EntityValidation.dll</HintPath>
+    <Reference Include="EntityValidation, Version=1.0.15.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityValidation.1.0.15\lib\net46\EntityValidation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -245,7 +245,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Libraries\FlashMessage\FlashMessage.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\AdminUser\AdminUserViewModel.cs" />
     <Compile Include="ViewModels\FornecedorUser\FornecedorUserViewModel.cs" />
@@ -377,6 +376,8 @@
     <Content Include="Vendor\fontawesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Vendor\jquery-countdown\jquery.countdown.js" />
     <Content Include="Vendor\jquery-countdown\jquery.countdown.min.js" />
+    <Content Include="Vendor\jquery-mask\js\jquery.mask-config.js" />
+    <Content Include="Vendor\jquery-mask\js\jquery.mask.min.js" />
     <Content Include="Vendor\jquery-parallax.js\parallax.js" />
     <Content Include="Vendor\jquery-parallax.js\parallax.min.js" />
     <Content Include="Vendor\jquery.cookie\jquery.cookie.js" />
@@ -475,6 +476,7 @@
     <Content Include="Views\FornecedorUser\Index.cshtml" />
     <Content Include="Views\FornecedorUser\Register.cshtml" />
     <Content Include="Views\FornecedorUser\Edit.cshtml" />
+    <Content Include="Views\FornecedorUser\_Partials\_Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -498,6 +500,10 @@
     <ProjectReference Include="..\SexyUp.Infrastructure\SexyUp.Infrastructure.csproj">
       <Project>{f278fbee-a68c-4fce-8da2-1d40b778a70d}</Project>
       <Name>SexyUp.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SexyUp.Utils\SexyUp.Utils.csproj">
+      <Project>{A1B212A6-5396-491C-BEE5-B41AEAFF9DAF}</Project>
+      <Name>SexyUp.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

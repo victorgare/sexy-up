@@ -59,7 +59,7 @@ namespace SexyUp.Web.Controllers
             {
                 UserManager.AddToRole(user.Id, nameof(Roles.Administrador));
 
-                FlashMessage.Success("Criado com sucesso");
+                FlashMessage.Success("Cadastrado com sucesso");
 
                 return RedirectToAction(nameof(Index), "AdminUser");
             }

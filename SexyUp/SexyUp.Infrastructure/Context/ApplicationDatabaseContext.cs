@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using SexyUp.ApplicationCore.Entities;
 
 namespace SexyUp.Infrastructure.Context
@@ -7,6 +8,7 @@ namespace SexyUp.Infrastructure.Context
     {
         public ApplicationDatabaseContext() : base("DefaultConnection")
         {
+            Database.SetInitializer(new CreateDatabaseIfNotExists<ApplicationDatabaseContext>());
         }
 
         public static ApplicationDatabaseContext Create()

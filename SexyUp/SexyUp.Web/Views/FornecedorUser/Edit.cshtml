@@ -1,8 +1,38 @@
-﻿
+﻿@model SexyUp.Web.ViewModels.FornecedorUser.FornecedorUserViewModel
+
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Edit</h2>
+<div class="row">
+    <div class="col-lg-6 offset-lg-3">
+        <div class="block">
+            <div class="block-header text-center">
+                <h6>Editar Fornecedor</h6>
+            </div>
+            <div class="block-body">
+                <hr>
+                @using (Html.BeginForm("Edit", "FornecedorUser", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
 
+                    //Formulario
+                    if (Model != null)
+                    {
+                        @Html.Partial("_Partials/_Form", Model)
+                    }
+                    else
+                    {
+                        @Html.Partial("_Partials/_Form")
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/vendor/jquery-mask/js")
+}

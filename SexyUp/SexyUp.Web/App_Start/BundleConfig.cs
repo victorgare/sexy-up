@@ -117,6 +117,13 @@ namespace SexyUp.Web
                 "~/vendor/datatables/js/jquery.dataTables.min.js",
                 "~/vendor/datatables/js/dataTables.bootstrap4.min.js",
                 "~/vendor/datatables/js/datatable-config.js"));
+
+            // jquer mask
+            bundles.Add(new ScriptBundle("~/vendor/jquery-mask/js").Include(
+                "~/vendor/jquery-mask/js/jquery.mask.min.js",
+                "~/vendor/jquery-mask/js/jquery.mask-config.js"));
+
+
             #endregion
 
         }

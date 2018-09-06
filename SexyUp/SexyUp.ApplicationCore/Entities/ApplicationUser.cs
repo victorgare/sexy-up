@@ -9,6 +9,9 @@ namespace SexyUp.ApplicationCore.Entities
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string CpfCnpj { get; set; }
+        public string PhantasyName { get; set; }
+        public string Site { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentity(UserManager<ApplicationUser> manager)
         {

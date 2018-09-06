@@ -1,0 +1,48 @@
+﻿@model SexyUp.Web.ViewModels.FornecedorUser.FornecedorUserViewModel
+
+@Html.HiddenFor(c => c.Id)
+
+<div class="form-group">
+    @Html.LabelFor(c => c.FirstName, new { @class = "form-label" })
+    @Html.TextBoxFor(c => c.FirstName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(c => c.FirstName, null, new { @class = "badge badge-danger" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(c => c.LastName, new { @class = "form-label" })
+    @Html.TextBoxFor(c => c.LastName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(c => c.LastName, null, new { @class = "badge badge-danger" })
+</div>
+<div class="form-group">
+    @Html.LabelFor(c => c.Email, new { @class = "form-label" })
+    @Html.TextBoxFor(c => c.Email, new { @class = "form-control" })
+    @Html.ValidationMessageFor(c => c.Email, null, new { @class = "badge badge-danger" })
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(c => c.Cnpj, new { @class = "form-label" })
+    @Html.TextBoxFor(c => c.Cnpj, new { @class = "form-control cnpj" })
+    @Html.ValidationMessageFor(c => c.Cnpj, null, new { @class = "badge badge-danger" })
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(c => c.PhoneNumber, new { @class = "form-label" })
+    @Html.TextBoxFor(c => c.PhoneNumber, new { @class = "form-control phone-number" })
+    @Html.ValidationMessageFor(c => c.PhoneNumber, null, new { @class = "badge badge-danger" })
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(c => c.PhantasyName, new { @class = "form-label" })
+    @Html.TextBoxFor(c => c.PhantasyName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(c => c.PhantasyName, null, new { @class = "badge badge-danger" })
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(c => c.Site, new { @class = "form-label" })
+    @Html.TextBoxFor(c => c.Site, new { @class = "form-control" })
+    @Html.ValidationMessageFor(c => c.Site, null, new { @class = "badge badge-danger" })
+</div>
+
+<div class="form-group text-center">
+    <button type="submit" class="btn btn-primary"><i class="icon-profile"></i> Salvar</button>
+</div>
+
