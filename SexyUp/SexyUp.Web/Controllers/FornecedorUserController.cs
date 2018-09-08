@@ -13,7 +13,7 @@ using SexyUp.Web.ViewModels.FornecedorUser;
 
 namespace SexyUp.Web.Controllers
 {
-    [Authorize(Roles = nameof(Roles.Administrador))]
+    [Authorize(Roles = nameof(Roles.Administrador)), ValidateAntiForgeryToken]
     public class FornecedorUserController : BaseAccountController
     {
         public ActionResult Index()

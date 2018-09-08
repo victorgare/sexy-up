@@ -30,6 +30,34 @@
                         @Html.TextBoxFor(c => c.Email, new { @class = "form-control" })
                         @Html.ValidationMessageFor(c => c.Email, null, new { @class = "badge badge-danger" })
                     </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(c => c.Gender, new { @class = "form-label" })
+
+                        <div class="row m-auto">
+                            <div class="col-lg-3 offset-lg-3">
+                                @Html.RadioButtonFor(m => m.Gender, "M", new { id = "Masculino", @class = "form-control radio-template", @checked = "checked" })
+                                <label for="Masculino">Masculino</label>
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.RadioButtonFor(m => m.Gender, "F", new { id = "Feminino", @class = "form-control radio-template" })
+                                <label for="Feminino">Feminino</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(c => c.Cpf, new { @class = "form-label" })
+                        @Html.TextBoxFor(c => c.Cpf, new { @class = "form-control cpf" })
+                        @Html.ValidationMessageFor(c => c.Cpf, null, new { @class = "badge badge-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(c => c.BirthDate, new { @class = "form-label" })
+                        @Html.TextBoxFor(c => c.BirthDate, new { @class = "form-control datepicker" })
+                        @Html.ValidationMessageFor(c => c.BirthDate, null, new { @class = "badge badge-danger" })
+                    </div>
+
                     <div class="form-group">
                         @Html.LabelFor(c => c.Password, new { @class = "form-label" })
                         @Html.PasswordFor(c => c.Password, new { @class = "form-control" })
@@ -49,6 +77,13 @@
     </div>
 </div>
 
+@section Styles{
+    @Styles.Render("~/vendor/bootstrap-datepicker/css")
+    @*@Styles.Render("~/content/theme/css")*@
+}
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/vendor/jquery-mask/js")
+    @Scripts.Render("~/vendor/bootstrap-datepicker/js")
 }

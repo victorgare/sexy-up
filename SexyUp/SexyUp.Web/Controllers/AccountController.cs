@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SexyUp.ApplicationCore.Entities;
@@ -8,17 +9,13 @@ using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using SexyUp.Web.Controllers.Common;
+using SexyUp.Web.Libraries.FlashMessage;
 
 namespace SexyUp.Web.Controllers
 {
     [Authorize]
     public class AccountController : BaseAccountController
     {
-
-        public AccountController()
-        {
-        }
-
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -53,11 +50,12 @@ namespace SexyUp.Web.Controllers
                 case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
+                    FlashMessage.Info("Usuário bloqueado, contate o administrador do sistema");
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction(nameof(SendCode), new { ReturnUrl = returnUrl, model.RememberMe });
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    FlashMessage.Error("Usuário ou senha inválidos");
                     return View(model);
             }
         }
@@ -121,14 +119,20 @@ namespace SexyUp.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && model.IsValid)
             {
+                var birthDate = Convert.ToDateTime(model.BirthDate);
                 var user = new ApplicationUser
                 {
                     UserName = model.Email,
                     Email = model.Email,
                     FirstName = model.FirstName,
-                    LastName = model.LastName
+                    LastName = model.LastName,
+                    CpfCnpj = model.Cpf,
+                    PhoneNumber = model.PhoneNumber,
+                    BirthDate = birthDate,
+                    Gender = model.Gender
+
                 };
                 var result = UserManager.Create(user, model.Password);
                 UserManager.AddToRole(user.Id, "Cliente");
@@ -146,7 +150,19 @@ namespace SexyUp.Web.Controllers
                     return RedirectToAction("Index", "Dashboard");
                 }
 
-                AddErrors(result);
+                FlashMessage.Error(result.Errors.FirstOrDefault());
+
+            }
+            else
+            {
+                if (model.Errors.Any())
+                {
+                    FlashMessage.Error(model.Errors.FirstOrDefault());
+                }
+                else
+                {
+                    FlashMessage.Error("Ocorreu um erro ao cadastrar");
+                }
             }
 
             // If we got this far, something failed, redisplay form

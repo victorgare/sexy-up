@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using EntityValidation.Attributes;
+using EntityValidation.Validation;
+using SexyUp.Utils.Utils;
 
 namespace SexyUp.Web.ViewModels
 {
@@ -62,7 +65,7 @@ namespace SexyUp.Web.ViewModels
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterViewModel
+    public class RegisterViewModel : Validate<RegisterViewModel>
     {
         [Display(Name = "Nome"), Required]
         public string FirstName { get; set; }
@@ -85,6 +88,29 @@ namespace SexyUp.Web.ViewModels
         [Display(Name = "Confirmar senha")]
         [Compare(nameof(Password), ErrorMessage = "As senhas são diferentes")]
         public string ConfirmPassword { get; set; }
+
+        private string _cpf;
+        [Required, Cpf]
+        public string Cpf
+        {
+            get => Mask.RemoveMask(_cpf);
+            set => _cpf = value;
+        }
+
+        [Display(Name = "Sexo")]
+        public string Gender { get; set; }
+
+        [Display(Name = "Data Aniversário")]
+        public string BirthDate { get; set; }
+
+        private string _phoneNumber;
+        [Display(Name = "Número Telefone")]
+        public string PhoneNumber
+        {
+            get => Mask.RemoveMask(_phoneNumber)?.Replace(" ", string.Empty);
+            set => _phoneNumber = value;
+        }
+
     }
 
     public class ResetPasswordViewModel

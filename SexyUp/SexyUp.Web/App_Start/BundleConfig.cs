@@ -64,6 +64,10 @@ namespace SexyUp.Web
             // datatables
             bundles.Add(new StyleBundle("~/vendor/datatables/css").Include(
                 "~/vendor/datatables/css/dataTables.bootstrap4.min.css"));
+
+            // datepicker
+            bundles.Add(new StyleBundle("~/vendor/bootstrap-datepicker/css").Include(
+                "~/vendor/bootstrap-datepicker/css/bootstrap-datepicker.standalone.min.css"));
             #endregion
 
             #region JS
@@ -118,10 +122,16 @@ namespace SexyUp.Web
                 "~/vendor/datatables/js/dataTables.bootstrap4.min.js",
                 "~/vendor/datatables/js/datatable-config.js"));
 
-            // jquer mask
+            // jquery mask
             bundles.Add(new ScriptBundle("~/vendor/jquery-mask/js").Include(
                 "~/vendor/jquery-mask/js/jquery.mask.min.js",
                 "~/vendor/jquery-mask/js/jquery.mask-config.js"));
+
+            // jquery mask
+            bundles.Add(new ScriptBundle("~/vendor/bootstrap-datepicker/js").Include(
+                "~/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js",
+                "~/vendor/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.min.js",
+                "~/vendor/bootstrap-datepicker/js/bootstrap-datepicker-config.js"));
 
 
             #endregion

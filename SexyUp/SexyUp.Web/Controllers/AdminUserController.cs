@@ -12,7 +12,7 @@ using SexyUp.Web.ViewModels.AdminUser;
 
 namespace SexyUp.Web.Controllers
 {
-    [Authorize(Roles = nameof(Roles.Administrador))]
+    [Authorize(Roles = nameof(Roles.Administrador)), ValidateAntiForgeryToken]
     public class AdminUserController : BaseAccountController
     {
 

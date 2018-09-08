@@ -18,12 +18,11 @@
     @Styles.Render("~/vendor/owl-carousel/css")
     @Styles.Render("~/vendor/toastr/css")
 
-    @Styles.Render("~/content/theme/css")
-
     @Scripts.Render("~/scripts/modernizr/js")
 
     @RenderSection("styles", false)
 
+    @Styles.Render("~/content/theme/css")
 </head>
 <body>
     @Html.Partial("_Navigation")
@@ -105,9 +104,9 @@
     @Scripts.Render("~/vendor/toastr/js")
     @Scripts.Render("~/scripts/main/js")
 
+    @RenderSection("scripts", false)
+
     <!-- Flash Messages -->
     @Html.RenderFlashMessage()
-
-    @RenderSection("scripts", false)
 </body>
 </html>

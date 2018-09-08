@@ -17,3 +17,8 @@
 .form-pointer {
     cursor: pointer;
 }
+
+/*.datepicker table tr td.active, .datepicker table tr td.active.highlighted .datepicker table tr td.active.active.focus, .datepicker table tr td.active.active:focus, .datepicker table tr td.active.active:hover, .datepicker table tr td.active.highlighted.active.focus, .datepicker table tr td.active.highlighted.active:focus, .datepicker table tr td.active.highlighted.active:hover, .datepicker table tr td.active.highlighted:active.focus, .datepicker table tr td.active.highlighted:active:focus, .datepicker table tr td.active.highlighted:active:hover, .datepicker table tr td.active:active.focus, .datepicker table tr td.active:active:focus, .datepicker table tr td.active:active:hover {
+    background-color: #eb2364;
+    border-color: #ea185c;
+}*/

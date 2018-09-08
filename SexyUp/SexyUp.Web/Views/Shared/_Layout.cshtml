@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using SexyUp.Web.Libraries.FlashMessage
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -12,10 +13,12 @@
     @Styles.Render("~/content/custom-font-icons/css")
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700">
     @Styles.Render("~/vendor/owl-carousel/css")
-    @Styles.Render("~/content/theme/css")
+    @Styles.Render("~/vendor/toastr/css")
 
     @Scripts.Render("~/scripts/modernizr/js")
+    @RenderSection("styles", false)
 
+    @Styles.Render("~/content/theme/css")
 </head>
 <body>
     @Html.Partial("_Navigation")
@@ -40,7 +43,11 @@
     @Scripts.Render("~/vendor/bootstrap-select/js")
     @Scripts.Render("~/vendor/nouislider/js")
     @Scripts.Render("~/vendor/jquery-countdown/js")
+    @Scripts.Render("~/vendor/toastr/js")
     @Scripts.Render("~/scripts/main/js")
     @RenderSection("scripts", false)
+
+    <!-- Flash Messages -->
+    @Html.RenderFlashMessage()
 </body>
 </html>
