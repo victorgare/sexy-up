@@ -3,8 +3,8 @@ using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using SexyUp.ApplicationCore.Constants;
 using SexyUp.ApplicationCore.Entities;
-using SexyUp.ApplicationCore.Enum;
 using SexyUp.Infrastructure.Context;
 using SexyUp.Utils.Utils;
 using SexyUp.Web.Controllers.Common;
@@ -13,7 +13,7 @@ using SexyUp.Web.ViewModels.FornecedorUser;
 
 namespace SexyUp.Web.Controllers
 {
-    [Authorize(Roles = nameof(Roles.Administrador)), ValidateAntiForgeryToken]
+    [Authorize(Roles = Roles.Administrador), ValidateAntiForgeryToken]
     public class FornecedorUserController : BaseAccountController
     {
         public ActionResult Index()

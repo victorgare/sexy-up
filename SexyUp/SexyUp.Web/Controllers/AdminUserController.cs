@@ -4,15 +4,15 @@ using SexyUp.Web.Controllers.Common;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using SexyUp.ApplicationCore.Constants;
 using SexyUp.ApplicationCore.Entities;
-using SexyUp.ApplicationCore.Enum;
 using SexyUp.Infrastructure.Context;
 using SexyUp.Web.Libraries.FlashMessage;
 using SexyUp.Web.ViewModels.AdminUser;
 
 namespace SexyUp.Web.Controllers
 {
-    [Authorize(Roles = nameof(Roles.Administrador)), ValidateAntiForgeryToken]
+    [Authorize(Roles = Roles.Administrador), ValidateAntiForgeryToken]
     public class AdminUserController : BaseAccountController
     {
 
