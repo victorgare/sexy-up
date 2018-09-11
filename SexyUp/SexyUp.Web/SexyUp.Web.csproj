@@ -279,6 +279,8 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Scripts\front.js" />
+    <None Include="Properties\PublishProfiles\sexyup - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\sexyup - Web Deploy.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -440,8 +442,6 @@
     <Content Include="Vendor\bootstrap-select\js\i18n\defaults-zh_TW.min.js" />
     <Content Include="Vendor\bootstrap\css\bootstrap.min.css" />
     <Content Include="Vendor\bootstrap\js\bootstrap.min.js" />
-    <Content Include="Vendor\bootstrap\js\jquery-3.3.1.slim.min.js" />
-    <Content Include="Vendor\bootstrap\js\popper.min.js" />
     <Content Include="Vendor\datatables\css\dataTables.bootstrap4.min.css" />
     <Content Include="Vendor\datatables\js\datatable-config.js" />
     <Content Include="Vendor\datatables\js\dataTables.bootstrap4.min.js" />
@@ -450,9 +450,6 @@
     <Content Include="Vendor\font-awesome\css\font-awesome.min.css" />
     <Content Include="Vendor\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Vendor\font-awesome\HELP-US-OUT.txt" />
-    <Content Include="Vendor\fontawesome\css\font-awesome.css" />
-    <Content Include="Vendor\fontawesome\css\font-awesome.min.css" />
-    <Content Include="Vendor\fontawesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Vendor\jquery-countdown\jquery.countdown.js" />
     <Content Include="Vendor\jquery-countdown\jquery.countdown.min.js" />
     <Content Include="Vendor\jquery-mask\js\jquery.mask-config.js" />
@@ -532,11 +529,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Vendor\fontawesome\fonts\fontawesome-webfont.eot" />
-    <Content Include="Vendor\fontawesome\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Vendor\fontawesome\fonts\fontawesome-webfont.woff" />
-    <Content Include="Vendor\fontawesome\fonts\fontawesome-webfont.woff2" />
-    <Content Include="Vendor\fontawesome\fonts\FontAwesome.otf" />
     <Content Include="Views\Shared\_Logotipo.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />

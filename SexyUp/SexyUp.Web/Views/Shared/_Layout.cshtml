@@ -6,19 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sexy Up!</title>
 
-    @Styles.Render("~/vendor/bootstrap/css")
-    @Styles.Render("~/vendor/font-awesome/css")
-    @Styles.Render("~/vendor/bootstrap-select/css")
-    @Styles.Render("~/vendor/nouislider/css")
-    @Styles.Render("~/content/custom-font-icons/css")
+    @Styles.Render("~/bundles/bootstrap/css")
+    @Styles.Render("~/bundles/font-awesome/css")
+    @Styles.Render("~/bundles/bootstrap-select/css")
+    @Styles.Render("~/bundles/nouislider/css")
+    @Styles.Render("~/bundles/custom-font-icons/css")
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700">
-    @Styles.Render("~/vendor/owl-carousel/css")
-    @Styles.Render("~/vendor/toastr/css")
+    @Styles.Render("~/bundles/owl-carousel/css")
+    @Styles.Render("~/bundles/toastr/css")
 
-    @Scripts.Render("~/scripts/modernizr/js")
+    @Scripts.Render("~/bundles/modernizr/js")
     @RenderSection("styles", false)
 
-    @Styles.Render("~/content/theme/css")
+    @Styles.Render("~/bundles/theme/css")
 </head>
 <body>
     @Html.Partial("_Navigation")
@@ -35,16 +35,16 @@
         </div>
     </div>
 
-    @Scripts.Render("~/vendor/jquery/js")
-    @Scripts.Render("~/vendor/popper/js")
-    @Scripts.Render("~/vendor/bootstrap/js")
-    @Scripts.Render("~/vendor/jquery-cookie/js")
-    @Scripts.Render("~/vendor/owl-carousel/js")
-    @Scripts.Render("~/vendor/bootstrap-select/js")
-    @Scripts.Render("~/vendor/nouislider/js")
-    @Scripts.Render("~/vendor/jquery-countdown/js")
-    @Scripts.Render("~/vendor/toastr/js")
-    @Scripts.Render("~/scripts/main/js")
+    @Scripts.Render("~/bundles/jquery/js")
+    @Scripts.Render("~/bundles/popper/js")
+    @Scripts.Render("~/bundles/bootstrap/js")
+    @Scripts.Render("~/bundles/jquery-cookie/js")
+    @Scripts.Render("~/bundles/owl-carousel/js")
+    @Scripts.Render("~/bundles/bootstrap-select/js")
+    @Scripts.Render("~/bundles/nouislider/js")
+    @Scripts.Render("~/bundles/jquery-countdown/js")
+    @Scripts.Render("~/bundles/toastr/js")
+    @Scripts.Render("~/bundles/main/js")
     @RenderSection("scripts", false)
 
     <!-- Flash Messages -->

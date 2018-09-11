@@ -28,107 +28,107 @@ namespace SexyUp.Web
             #region CSS
 
             // bootstrap
-            bundles.Add(new StyleBundle("~/vendor/bootstrap/css").Include(
+            bundles.Add(new StyleBundle("~/bundles/bootstrap/css").Include(
                       "~/vendor/bootstrap/css/bootstrap.min.css"));
 
             // font-awesome
-            bundles.Add(new StyleBundle("~/vendor/font-awesome/css").Include(
-                "~/vendor/font-awesome/css/font-awesome.min.css"));
+            bundles.Add(new StyleBundle("~/bundles/font-awesome/css").Include(
+                "~/vendor/font-awesome/css/font-awesome.min.css", new CssRewriteUrlTransform()));
 
             // bootstrap select
-            bundles.Add(new StyleBundle("~/vendor/bootstrap-select/css").Include(
+            bundles.Add(new StyleBundle("~/bundles/bootstrap-select/css").Include(
                 "~/vendor/bootstrap-select/css/bootstrap-select.min.css"));
 
             // price slider
-            bundles.Add(new StyleBundle("~/vendor/nouislider/css").Include(
+            bundles.Add(new StyleBundle("~/bundles/nouislider/css").Include(
                 "~/vendor/nouislider/nouislider.css"));
 
             // custom font icons
-            bundles.Add(new StyleBundle("~/content/custom-font-icons/css").Include(
-                "~/Content/custom-fonticons.css"));
+            bundles.Add(new StyleBundle("~/bundles/custom-font-icons/css").Include(
+                "~/Content/custom-fonticons.css", new CssRewriteUrlTransform()));
 
             // owl carousel
-            bundles.Add(new StyleBundle("~/vendor/owl-carousel/css").Include(
+            bundles.Add(new StyleBundle("~/bundles/owl-carousel/css").Include(
                 "~/vendor/owl.carousel/assets/owl.carousel.css",
                 "~/vendor/owl.carousel/assets/owl.theme.default.css"));
 
             // theme
-            bundles.Add(new StyleBundle("~/content/theme/css").Include(
+            bundles.Add(new StyleBundle("~/bundles/theme/css").Include(
                 "~/Content/style.pink.css",
                 "~/Content/custom.css"));
 
             // toastr
-            bundles.Add(new StyleBundle("~/vendor/toastr/css").Include(
+            bundles.Add(new StyleBundle("~/bundles/toastr/css").Include(
                 "~/vendor/toastr/css/toastr.min.css"));
 
             // datatables
-            bundles.Add(new StyleBundle("~/vendor/datatables/css").Include(
+            bundles.Add(new StyleBundle("~/bundles/datatables/css").Include(
                 "~/vendor/datatables/css/dataTables.bootstrap4.min.css"));
 
             // datepicker
-            bundles.Add(new StyleBundle("~/vendor/bootstrap-datepicker/css").Include(
+            bundles.Add(new StyleBundle("~/bundles/bootstrap-datepicker/css").Include(
                 "~/vendor/bootstrap-datepicker/css/bootstrap-datepicker.standalone.min.css"));
             #endregion
 
             #region JS
             // modernizr
-            bundles.Add(new ScriptBundle("~/scripts/modernizr/js").Include(
+            bundles.Add(new ScriptBundle("~/bundles/modernizr/js").Include(
                       "~/Scripts/modernizr.custom.79639.js"));
 
             // jquery
-            bundles.Add(new ScriptBundle("~/vendor/jquery/js").Include(
+            bundles.Add(new ScriptBundle("~/bundles/jquery/js").Include(
                 "~/vendor/jquery/jquery.min.js"));
 
             // popper
-            bundles.Add(new ScriptBundle("~/vendor/popper/js").Include(
+            bundles.Add(new ScriptBundle("~/bundles/popper/js").Include(
                 "~/vendor/popper.js/umd/popper.min.js"));
 
             // bootstrap
-            bundles.Add(new ScriptBundle("~/vendor/bootstrap/js").Include(
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap/js").Include(
                 "~/vendor/bootstrap/js/bootstrap.min.js"));
 
             // jquery cookie
-            bundles.Add(new ScriptBundle("~/vendor/jquery-cookie/js").Include(
+            bundles.Add(new ScriptBundle("~/bundles/jquery-cookie/js").Include(
                 "~/vendor/jquery.cookie/jquery.cookie.js"));
 
             // owl carousel
-            bundles.Add(new ScriptBundle("~/vendor/owl-carousel/js").Include(
+            bundles.Add(new ScriptBundle("~/bundles/owl-carousel/js").Include(
                 "~/vendor/owl.carousel/owl.carousel.min.js",
                 "~/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js"));
 
             // bootstrap select
-            bundles.Add(new ScriptBundle("~/vendor/bootstrap-select/js").Include(
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap-select/js").Include(
                 "~/vendor/bootstrap-select/js/bootstrap-select.min.js"));
 
             // noui slider
-            bundles.Add(new ScriptBundle("~/vendor/nouislider/js").Include(
+            bundles.Add(new ScriptBundle("~/bundles/nouislider/js").Include(
                 "~/vendor/nouislider/nouislider.min.js"));
 
             // jquery-countdown
-            bundles.Add(new ScriptBundle("~/vendor/jquery-countdown/js").Include(
+            bundles.Add(new ScriptBundle("~/bundles/jquery-countdown/js").Include(
                 "~/vendor/jquery-countdown/jquery.countdown.min.js"));
 
             // main js
-            bundles.Add(new ScriptBundle("~/scripts/main/js").Include(
+            bundles.Add(new ScriptBundle("~/bundles/main/js").Include(
                 "~/scripts/front.js"));
 
             // toastr
-            bundles.Add(new ScriptBundle("~/vendor/toastr/js").Include(
+            bundles.Add(new ScriptBundle("~/bundles/toastr/js").Include(
                 "~/vendor/toastr/js/toastr.min.js"));
 
             // datatables
-            bundles.Add(new ScriptBundle("~/vendor/datatables/js").Include(
+            bundles.Add(new ScriptBundle("~/bundles/datatables/js").Include(
                 "~/vendor/datatables/js/jquery.dataTables.min.js",
                 "~/vendor/datatables/js/dataTables.bootstrap4.min.js",
                 "~/vendor/datatables/js/datatable-config.js"));
 
             // jquery mask
-            bundles.Add(new ScriptBundle("~/vendor/jquery-mask/js").Include(
+            bundles.Add(new ScriptBundle("~/bundles/jquery-mask/js").Include(
                 "~/vendor/jquery-mask/js/jquery.mask.min.js",
                 "~/vendor/jquery-mask/js/jquery.mask-config.js"));
 
             // jquery mask
-            bundles.Add(new ScriptBundle("~/vendor/bootstrap-datepicker/js").Include(
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap-datepicker/js").Include(
                 "~/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js",
                 "~/vendor/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.min.js",
                 "~/vendor/bootstrap-datepicker/js/bootstrap-datepicker-config.js"));
