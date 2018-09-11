@@ -12,7 +12,7 @@ using SexyUp.Web.ViewModels.AdminUser;
 
 namespace SexyUp.Web.Controllers
 {
-    [Authorize(Roles = Roles.Administrador), ValidateAntiForgeryToken]
+    [Authorize(Roles = Roles.Administrador)]
     public class AdminUserController : BaseAccountController
     {
 
@@ -37,7 +37,7 @@ namespace SexyUp.Web.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Register(AdminUserViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -86,7 +86,7 @@ namespace SexyUp.Web.Controllers
             return View(viewModel);
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Edit(AdminUserViewModel viewModel)
         {
             if (!ModelState.IsValid)

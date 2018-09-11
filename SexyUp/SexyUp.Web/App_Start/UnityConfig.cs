@@ -1,7 +1,11 @@
+using SexyUp.ApplicationCore.Interfaces.Repository;
+using SexyUp.Infrastructure.Repository;
 using SexyUp.Web.Controllers;
 using System;
+using SexyUp.ApplicationCore.Interfaces.Service;
 using Unity;
 using Unity.Injection;
+using SexyUp.ApplicationCore.Services;
 
 namespace SexyUp.Web
 {
@@ -43,9 +47,13 @@ namespace SexyUp.Web
 
             #region Services
 
+            container.RegisterType<IProductService, ProductService>();
+
             #endregion
 
             #region Repositories
+
+            container.RegisterType<IProductRepository, ProductRepository>();
 
             #endregion
         }

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<SexyUp.ApplicationCore.Entities.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="row">
+    <div class="table table-responsive">
+        <table class="table table-hover table-responsive-md text-center dataTable">
+            <thead>
+                <tr>
+                    <th>Descrição</th>
+                    <th>Valor</th>
+                    <th>Categoria</th>
+                    <th>Editar</th>
+                    <th>Bloquear</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Description</td>
+                        <td>@item.Price</td>
+                        <td>@item.Category</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Product", new {id = item.Id})" class="btn btn-sm btn-primary">
+                                <i class="fa fa-edit"></i> Editar
+                            </a>
+                        </td>
+                        <td>
+                            @if (item.ProductStatus == ProductStatus.Inativo)
+                            {
+                                <a href="@Url.Action("Unlock", "Product", new {id = item.Id})" class="btn btn-sm btn-info">
+                                    <i class="fa fa-unlock"></i> Desbloquear
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Lock", "Product", new {id = item.Id})" class="btn btn-sm btn-danger">
+                                    <i class="fa fa-lock"></i> Bloquear
+                                </a>
+                            }
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<hr class="invisible" />
+
+<div class="row pull-right">
+    <a href="@Url.Action("Insert", "Product")" class="btn btn-primary">
+        <i class="fa fa-cube"></i> Cadastrar
+    </a>
+</div>
+
+@section styles{
+    @Styles.Render("~/vendor/datatables/css")
+}
+
+@section scripts{
+    @Scripts.Render("~/vendor/datatables/js")
+}
+

@@ -15,4 +15,9 @@
 
     // cnpj
     $(".cnpj").mask("00.000.000/0000-00");
+
+    // money
+    $(".money").mask("#.##0,00", { reverse: true });
+
+    $(".decimal").mask("#0.0000", { reverse: true });
 })();

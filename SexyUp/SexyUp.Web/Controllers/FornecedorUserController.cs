@@ -13,7 +13,7 @@ using SexyUp.Web.ViewModels.FornecedorUser;
 
 namespace SexyUp.Web.Controllers
 {
-    [Authorize(Roles = Roles.Administrador), ValidateAntiForgeryToken]
+    [Authorize(Roles = Roles.Administrador)]
     public class FornecedorUserController : BaseAccountController
     {
         public ActionResult Index()
@@ -37,7 +37,7 @@ namespace SexyUp.Web.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Register(FornecedorUserViewModel viewModel)
         {
             if (ModelState.IsValid && viewModel.IsValid)
@@ -99,7 +99,7 @@ namespace SexyUp.Web.Controllers
             return View(viewModel);
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Edit(FornecedorUserViewModel viewModel)
         {
             if (ModelState.IsValid && viewModel.IsValid)

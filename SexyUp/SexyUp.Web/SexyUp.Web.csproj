@@ -253,6 +253,7 @@
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Product\ProductViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\custom-fonticons.css" />
@@ -563,6 +564,10 @@
     <Content Include="Vendor\bootstrap-datepicker\css\bootstrap-datepicker3.min.css.map" />
     <Content Include="Vendor\bootstrap-datepicker\css\bootstrap-datepicker3.standalone.css.map" />
     <Content Include="Vendor\bootstrap-datepicker\css\bootstrap-datepicker3.standalone.min.css.map" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\Insert.cshtml" />
+    <Content Include="Views\Product\Update.cshtml" />
+    <Content Include="Views\Product\_Partials\_Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -570,7 +575,6 @@
     <Folder Include="Vendor\font-awesome\scss\" />
     <Folder Include="Vendor\nouislider\distribute\" />
     <Folder Include="Views\BaseAccountController\" />
-    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

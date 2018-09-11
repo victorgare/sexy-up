@@ -49,13 +49,14 @@
   <ItemGroup>
     <Compile Include="Entities\ApplicationUser.cs" />
     <Compile Include="Constants\Roles.cs" />
+    <Compile Include="Entities\Product.cs" />
+    <Compile Include="Constants\ProductStatus.cs" />
+    <Compile Include="Interfaces\Repository\IProductRepository.cs" />
+    <Compile Include="Interfaces\Service\IProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ProductService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\Repository\" />
-    <Folder Include="Interfaces\Service\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\SexyUp.Utils\SexyUp.Utils.csproj">
       <Project>{a1b212a6-5396-491c-bee5-b41aeaff9daf}</Project>

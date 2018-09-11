@@ -1,0 +1,38 @@
+﻿@model SexyUp.Web.ViewModels.Product.ProductViewModel
+
+@{
+    ViewBag.Title = "Insert";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-6 offset-lg-3">
+        <div class="block">
+            <div class="block-header text-center">
+                <h6>Novo Produto</h6>
+            </div>
+            <div class="block-body">
+                <hr>
+                @using (Html.BeginForm("Insert", "Product", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    //Formulario
+                    if (Model != null)
+                    {
+                        @Html.Partial("_Partials/_Form", Model)
+                    }
+                    else
+                    {
+                        @Html.Partial("_Partials/_Form")
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/vendor/jquery-mask/js")
+}

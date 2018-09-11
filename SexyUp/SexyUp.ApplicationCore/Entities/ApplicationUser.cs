@@ -13,7 +13,7 @@ namespace SexyUp.ApplicationCore.Entities
         public string CpfCnpj { get; set; }
         public string PhantasyName { get; set; }
         public string Site { get; set; }
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
         public string Gender { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentity(UserManager<ApplicationUser> manager)

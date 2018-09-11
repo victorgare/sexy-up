@@ -61,7 +61,16 @@
                                         </a>
                                         <a href="@Url.Action("Index", "FornecedorUser")" class="list-group-item d-flex justify-content-between align-items-center">
                                             <span>
-                                                <span class="fa fa-cube"></span>Fornecedores
+                                                <span class="fa fa-truck"></span>Fornecedores
+                                            </span>
+                                        </a>
+                                    }
+
+                                    @if (User.IsInRole(Roles.Administrador) || User.IsInRole(Roles.Fornecedor))
+                                    {
+                                        <a href="@Url.Action("Index", "Product")" class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span>
+                                                <span class="fa fa-cube"></span>Produtos
                                             </span>
                                         </a>
                                     }
