@@ -69,5 +69,13 @@ namespace SexyUp.ApplicationCore.Services
         {
             return _productRepository.GetAllBySupplier(idSupplier);
         }
+
+        public List<Product> SearchTerm(string termToSearch)
+        {
+            // quebra a string nos espacos para pesquisar os produtos por palavra chave
+            var splitedTerms = termToSearch.Split(null);
+
+            return _productRepository.SearchTerms(splitedTerms);
+        }
     }
 }

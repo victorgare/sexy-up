@@ -1,10 +1,18 @@
 ﻿using System.Web.Mvc;
+using SexyUp.ApplicationCore.Interfaces.Service;
 using SexyUp.Web.ViewModels.Home;
 
 namespace SexyUp.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IProductService _productService;
+
+        public HomeController(IProductService productService)
+        {
+            _productService = productService;
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -12,7 +20,10 @@ namespace SexyUp.Web.Controllers
 
         public ActionResult Search(HomeViewModel homeViewModel)
         {
-            return RedirectToAction(nameof(Index), "Home");
+            var itens = _productService.SearchTerm(homeViewModel.SearchTerm);
+
+            homeViewModel.SearchResult = itens;
+            return View(nameof(Index), homeViewModel);
         }
 
         public ActionResult About()

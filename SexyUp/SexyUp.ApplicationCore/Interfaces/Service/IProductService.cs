@@ -10,5 +10,6 @@ namespace SexyUp.ApplicationCore.Interfaces.Service
         Product GetById(string id);
         List<Product> GetAll();
         List<Product> GetAllBySupplier(string idSupplier);
+        List<Product> SearchTerm(string termToSearch);
     }
 }

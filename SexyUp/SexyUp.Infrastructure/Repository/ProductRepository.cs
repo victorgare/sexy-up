@@ -51,5 +51,23 @@ namespace SexyUp.Infrastructure.Repository
                 return context.Product.Where(c => c.Store.Equals(idSupplier) && c.ProductStatus != ProductStatus.Bloqueado).ToList();
             }
         }
+
+        public List<Product> SearchTerms(string[] terms)
+        {
+            using (var context = new ApplicationDatabaseContext())
+            {
+                var result = new List<Product>();
+                foreach (var term in terms)
+                {
+                    var itens = context.Product.Where(c => c.Name.Contains(term)
+                                                           || c.Description.Contains(term)
+                                                           || c.Brand.Contains(term));
+
+                    result.AddRange(itens);
+                }
+
+                return result.Distinct().ToList();
+            }
+        }
     }
 }
