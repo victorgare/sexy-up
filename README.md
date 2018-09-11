@@ -1,2 +1,3 @@
-# sexy-up
-Sexy-Up Tcc FIAP
+# Sexy Up!
+
+[Sexy Up!](https://sexyup.azurewebsites.net/)
