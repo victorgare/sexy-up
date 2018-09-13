@@ -18,7 +18,15 @@
     cursor: pointer;
 }
 
-/*.datepicker table tr td.active, .datepicker table tr td.active.highlighted .datepicker table tr td.active.active.focus, .datepicker table tr td.active.active:focus, .datepicker table tr td.active.active:hover, .datepicker table tr td.active.highlighted.active.focus, .datepicker table tr td.active.highlighted.active:focus, .datepicker table tr td.active.highlighted.active:hover, .datepicker table tr td.active.highlighted:active.focus, .datepicker table tr td.active.highlighted:active:focus, .datepicker table tr td.active.highlighted:active:hover, .datepicker table tr td.active:active.focus, .datepicker table tr td.active:active:focus, .datepicker table tr td.active:active:hover {
-    background-color: #eb2364;
-    border-color: #ea185c;
-}*/
+.pagination-custom span.page-link {
+    min-width: 40px;
+    padding: 0 15px;
+    height: 40px;
+    margin: 0 5px;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid #ddd;
+    color: #333;
+    font-weight: 400;
+    border-radius: 0 !important;
+}

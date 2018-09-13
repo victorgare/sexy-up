@@ -1,9 +1,12 @@
-﻿using SexyUp.ApplicationCore.Entities;
+﻿using System;
+using SexyUp.ApplicationCore.Entities;
 using SexyUp.ApplicationCore.Interfaces.Repository;
 using SexyUp.Infrastructure.Context;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
+using LinqKit;
 using SexyUp.ApplicationCore.Constants;
 
 namespace SexyUp.Infrastructure.Repository
@@ -48,26 +51,40 @@ namespace SexyUp.Infrastructure.Repository
         {
             using (var context = new ApplicationDatabaseContext())
             {
-                return context.Product.Where(c => c.Store.Equals(idSupplier) && c.ProductStatus != ProductStatus.Bloqueado).ToList();
+                return context.Product
+                    .Where(c => c.Store.Equals(idSupplier) && c.ProductStatus != ProductStatus.Bloqueado).ToList();
             }
         }
 
-        public List<Product> SearchTerms(string[] terms)
+        public List<Product> SearchTerms(string[] terms, int page, int pageItens, out int totalItens)
         {
             using (var context = new ApplicationDatabaseContext())
             {
-                var result = new List<Product>();
-                foreach (var term in terms)
-                {
-                    var itens = context.Product.Where(c => c.Name.Contains(term)
-                                                           || c.Description.Contains(term)
-                                                           || c.Brand.Contains(term));
+                var whereClause = SearchTermPredicate(terms);
 
-                    result.AddRange(itens);
-                }
+                totalItens = context.Product.AsExpandable().Where(whereClause).Distinct().Count();
 
-                return result.Distinct().ToList();
+                return context.Product
+                                        .AsExpandable()
+                                        .Where(whereClause)
+                                        .Distinct()
+                                        .OrderBy(c => c.Id)
+                                        .Skip(page * pageItens)
+                                        .Take(pageItens)
+                                        .ToList();
             }
+        }
+
+        private Expression<Func<Product, bool>> SearchTermPredicate(string[] searchValue)
+        {
+            // simple method to dynamically plugin a where clause
+            var predicate = PredicateBuilder.New<Product>(true); // true -where(true) return all
+
+            predicate = predicate.Or(s => searchValue.Any(srch => s.Name.ToLower().Contains(srch)));
+            predicate = predicate.Or(s => searchValue.Any(srch => s.Description.ToLower().Contains(srch)));
+            predicate = predicate.Or(s => searchValue.Any(srch => s.Brand.ToLower().Contains(srch)));
+
+            return predicate;
         }
     }
 }
