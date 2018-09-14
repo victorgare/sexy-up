@@ -80,11 +80,14 @@
                             }
 
                         </div>
-                        <nav aria-label="page navigation example" class="d-flex justify-content-center">
-                            <div class="pagination pagination-custom">
-                                @Html.PagedListPager(Model.SearchResult, page => page.ToString(), Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
-                            </div>
-                        </nav>
+                        @if (Model.SearchResult.Any())
+                        {
+                            <nav aria-label="page navigation example" class="d-flex justify-content-center">
+                                <div class="pagination pagination-custom">
+                                    @Html.PagedListPager(Model.SearchResult, page => page.ToString(), Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
+                                </div>
+                            </nav>
+                        }
                     </div>
                     <!-- / Grid End-->
                 </div>
