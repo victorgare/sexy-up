@@ -10,6 +10,8 @@ namespace SexyUp.ApplicationCore.Interfaces.Repository
         Product GetById(string id);
         List<Product> GetAll();
         List<Product> GetAllBySupplier(string idSupplier);
-        List<Product> SearchTerms(string[] terms, int page, int pageItens, out int totalItens);
+        List<Product> SearchTerms(string[] terms, string[] categories, decimal? minValue, decimal? maxValue, int page, int pageItens, out int totalItens);
+        List<Category> GetAllCategoriesBySeachTerm(string[] terms);
+        List<decimal> GetAllPricesBySearchTerm(string[] terms);
     }
 }

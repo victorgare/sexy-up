@@ -1,9 +1,11 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using SexyUp.ApplicationCore.Entities;
+﻿using SexyUp.ApplicationCore.Entities;
 using SexyUp.ApplicationCore.Interfaces.Service;
+using SexyUp.Web.Helpers;
 using SexyUp.Web.Libraries.FlashMessage;
 using SexyUp.Web.ViewModels.Home;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 using X.PagedList;
 
 namespace SexyUp.Web.Controllers
@@ -43,9 +45,13 @@ namespace SexyUp.Web.Controllers
 
             var pageIndex = (page == 0 ? 1 : page) - 1;
 
-            var itens = _productService.SearchTerm(homeViewModel.SearchTerm, pageIndex, 12, out var totalItens);
+            var categories = homeViewModel.CategoriesSelected;
+            var minValue = homeViewModel.MinPriceSelected;
+            var maxValue = homeViewModel.MaxPriceSelected;
 
-            if (!itens.Any())
+            var itens = _productService.SearchTerm(searchTerm, categories, minValue, maxValue, pageIndex, 12, out var totalItens);
+
+            if (!itens.Any() && minValue == null && maxValue == null && categories == null)
             {
                 FlashMessage.Warning("Nenhum produto encontrado");
             }
@@ -53,24 +59,53 @@ namespace SexyUp.Web.Controllers
             {
                 var result = new StaticPagedList<Product>(itens, pageIndex + 1, 12, totalItens);
                 homeViewModel.SearchResult = result;
+
+                FillFilterOptions(ref homeViewModel);
             }
 
             homeViewModel.LastSearchTerm = searchTerm;
             return View(nameof(Index), homeViewModel);
         }
 
-        public ActionResult About()
+        private void FillFilterOptions(ref HomeViewModel homeViewModel)
         {
-            ViewBag.Message = "Your application description page.";
+            const string categoriesKey = "CategoriesCookies";
+            const string pricesKey = "PricesCookies";
 
-            return View();
-        }
+            var searchTerm = homeViewModel.SearchTerm;
+            var lastSearchTerm = homeViewModel.LastSearchTerm;
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+            List<Category> categories;
+            List<decimal> prices;
 
-            return View();
+            if (searchTerm != lastSearchTerm)
+            {
+                categories = _productService.GetAllCategoriesBySeachTerm(homeViewModel.SearchTerm);
+                prices = _productService.GetAllPricesBySearchTerm(searchTerm);
+
+                SessionMenager.SetObject(categories, categoriesKey);
+                SessionMenager.SetObject(prices, pricesKey);
+
+            }
+            else
+            {
+                categories = SessionMenager.GetObjectsList<Category>(categoriesKey);
+                prices = SessionMenager.GetObjectsList<decimal>(pricesKey);
+
+                if (categories == null)
+                {
+                    categories = _productService.GetAllCategoriesBySeachTerm(homeViewModel.SearchTerm);
+                }
+
+                if (prices == null)
+                {
+                    prices = _productService.GetAllPricesBySearchTerm(searchTerm);
+                }
+            }
+
+            homeViewModel.MinPrice = prices[0];
+            homeViewModel.MaxPrice = prices[1];
+            homeViewModel.CategoriesMultiSelect = new MultiSelectList(categories, "Id", "Name");
         }
     }
 }

@@ -70,12 +70,28 @@ namespace SexyUp.ApplicationCore.Services
             return _productRepository.GetAllBySupplier(idSupplier);
         }
 
-        public List<Product> SearchTerm(string termToSearch, int page, int pageItens, out int totalItens)
+        public List<Product> SearchTerm(string termToSearch, string[] categories, decimal? minValue, decimal? maxValue, int page, int pageItens, out int totalItens)
         {
             // quebra a string nos espacos para pesquisar os produtos por palavra chave
             var splitedTerms = termToSearch.ToLower().Split(null);
 
-            return _productRepository.SearchTerms(splitedTerms, page, pageItens, out totalItens);
+            return _productRepository.SearchTerms(splitedTerms, categories, minValue, maxValue, page, pageItens, out totalItens);
+        }
+
+        public List<Category> GetAllCategoriesBySeachTerm(string termToSearch)
+        {
+            // quebra a string nos espacos para pesquisar os produtos por palavra chave
+            var splitedTerms = termToSearch.ToLower().Split(null);
+
+            return _productRepository.GetAllCategoriesBySeachTerm(splitedTerms);
+        }
+
+        public List<decimal> GetAllPricesBySearchTerm(string termToSearch)
+        {
+            // quebra a string nos espacos para pesquisar os produtos por palavra chave
+            var splitedTerms = termToSearch.ToLower().Split(null);
+
+            return _productRepository.GetAllPricesBySearchTerm(splitedTerms);
         }
     }
 }

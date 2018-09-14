@@ -56,11 +56,11 @@ namespace SexyUp.Infrastructure.Repository
             }
         }
 
-        public List<Product> SearchTerms(string[] terms, int page, int pageItens, out int totalItens)
+        public List<Product> SearchTerms(string[] terms, string[] categories, decimal? minValue, decimal? maxValue, int page, int pageItens, out int totalItens)
         {
             using (var context = new ApplicationDatabaseContext())
             {
-                var whereClause = SearchTermPredicate(terms);
+                var whereClause = SearchTermPredicate(terms, categories, minValue, maxValue);
 
                 totalItens = context.Product.AsExpandable().Where(whereClause).Distinct().Count();
 
@@ -68,6 +68,7 @@ namespace SexyUp.Infrastructure.Repository
                                         .AsExpandable()
                                         .Where(whereClause)
                                         .Distinct()
+                                        .Include(c => c.Category)
                                         .OrderBy(c => c.Id)
                                         .Skip(page * pageItens)
                                         .Take(pageItens)
@@ -75,14 +76,80 @@ namespace SexyUp.Infrastructure.Repository
             }
         }
 
-        private Expression<Func<Product, bool>> SearchTermPredicate(string[] searchValue)
+        public List<Category> GetAllCategoriesBySeachTerm(string[] terms)
+        {
+            using (var context = new ApplicationDatabaseContext())
+            {
+                var whereClause = SearchTermPredicate(terms, null, null, null);
+
+                return context.Product
+                    .AsExpandable()
+                    .Where(whereClause)
+                    .Distinct()
+                    .Include(c => c.Category)
+                    .Select(c => c.Category)
+                    .Distinct()
+                    .ToList();
+            }
+        }
+
+        public List<decimal> GetAllPricesBySearchTerm(string[] terms)
+        {
+            using (var context = new ApplicationDatabaseContext())
+            {
+                var whereClause = SearchTermPredicate(terms, null, null, null);
+
+                // pega o maior preco dos produtos encontrados
+                var maxPrice = context.Product
+                    .AsExpandable()
+                    .Where(whereClause)
+                    .Distinct()
+                    .Select(c => c.Price)
+                    .Distinct()
+                    .Max();
+
+                // pega o menor preco dos produtos encontrados
+                var minPrice = context.Product
+                    .AsExpandable()
+                    .Where(whereClause)
+                    .Distinct()
+                    .Select(c => c.Price)
+                    .Distinct()
+                    .Min();
+
+                return new List<decimal>
+                {
+                    minPrice,
+                    maxPrice
+                };
+            }
+        }
+
+        private Expression<Func<Product, bool>> SearchTermPredicate(string[] searchValue, string[] categories, decimal? minValue, decimal? maxValue)
         {
             // simple method to dynamically plugin a where clause
-            var predicate = PredicateBuilder.New<Product>(true); // true -where(true) return all
+            var predicate = PredicateBuilder.New<Product>(c => c.ProductStatus == ProductStatus.Ativo);
 
-            predicate = predicate.Or(s => searchValue.Any(srch => s.Name.ToLower().Contains(srch)));
-            predicate = predicate.Or(s => searchValue.Any(srch => s.Description.ToLower().Contains(srch)));
-            predicate = predicate.Or(s => searchValue.Any(srch => s.Brand.ToLower().Contains(srch)));
+
+            predicate = predicate.And(s => searchValue.Any(srch => s.Name.ToLower().Contains(srch))
+                                                        || searchValue.Any(srch => s.Description.ToLower().Contains(srch))
+                                                        || searchValue.Any(srch => s.Brand.ToLower().Contains(srch)));
+
+
+            if (categories != null)
+            {
+                predicate.And(c => categories.Any(s => c.CategoryId.Contains(s)));
+            }
+
+            if (minValue != null)
+            {
+                predicate.And(c => c.Price >= minValue);
+            }
+
+            if (maxValue != null)
+            {
+                predicate.And(c => c.Price <= maxValue);
+            }
 
             return predicate;
         }

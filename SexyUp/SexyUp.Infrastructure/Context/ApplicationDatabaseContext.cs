@@ -11,6 +11,7 @@ namespace SexyUp.Infrastructure.Context
         public ApplicationDatabaseContext() : base("DefaultConnection")
         {
             Database.SetInitializer(new CreateDatabaseIfNotExists<ApplicationDatabaseContext>());
+            Configuration.LazyLoadingEnabled = true;
         }
 
         public static ApplicationDatabaseContext Create()

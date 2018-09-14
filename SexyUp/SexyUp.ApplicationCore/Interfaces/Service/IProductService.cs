@@ -10,6 +10,8 @@ namespace SexyUp.ApplicationCore.Interfaces.Service
         Product GetById(string id);
         List<Product> GetAll();
         List<Product> GetAllBySupplier(string idSupplier);
-        List<Product> SearchTerm(string termToSearch, int page, int pageItens, out int totalItens);
+        List<Product> SearchTerm(string termToSearch, string[] categories, decimal? minValue, decimal? maxValue, int page, int pageItens, out int totalItens);
+        List<Category> GetAllCategoriesBySeachTerm(string termToSearch);
+        List<decimal> GetAllPricesBySearchTerm(string termToSearch);
     }
 }

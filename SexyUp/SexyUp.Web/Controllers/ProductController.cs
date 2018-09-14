@@ -68,7 +68,7 @@ namespace SexyUp.Web.Controllers
                     BoxHeight = Convert.ToDecimal(viewModel.BoxHeight),
                     Price = Convert.ToDecimal(viewModel.Price.Replace(".", string.Empty).Replace(",", ".")),
                     Brand = viewModel.Brand,
-                    Category = viewModel.Category,
+                    CategoryId = viewModel.Category,
                     Store = storeId,
                     Unit = Convert.ToDecimal(viewModel.Unit),
                     Weight = Convert.ToDecimal(viewModel.Weight),
