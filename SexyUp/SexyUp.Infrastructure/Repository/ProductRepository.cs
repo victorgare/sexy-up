@@ -100,22 +100,22 @@ namespace SexyUp.Infrastructure.Repository
                 var whereClause = SearchTermPredicate(terms, null, null, null);
 
                 // pega o maior preco dos produtos encontrados
-                var maxPrice = context.Product
+                var maxPrice = Convert.ToDecimal(context.Product
                     .AsExpandable()
                     .Where(whereClause)
                     .Distinct()
                     .Select(c => c.Price)
                     .Distinct()
-                    .Max();
+                    .Max());
 
                 // pega o menor preco dos produtos encontrados
-                var minPrice = context.Product
+                var minPrice = Convert.ToDecimal(context.Product
                     .AsExpandable()
                     .Where(whereClause)
                     .Distinct()
                     .Select(c => c.Price)
                     .Distinct()
-                    .Min();
+                    .Min());
 
                 return new List<decimal>
                 {

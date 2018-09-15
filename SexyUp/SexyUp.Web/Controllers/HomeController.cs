@@ -51,7 +51,16 @@ namespace SexyUp.Web.Controllers
 
             var itens = _productService.SearchTerm(searchTerm, categories, minValue, maxValue, pageIndex, 12, out var totalItens);
 
-            if (!itens.Any() && minValue == null && maxValue == null && categories == null)
+            if (!itens.Any() && searchTerm == lastSearchTerm)
+            {
+                FlashMessage.Warning("Nenhum produto encontrado");
+
+                var result = new StaticPagedList<Product>(itens, pageIndex + 1, 12, totalItens);
+                homeViewModel.SearchResult = result;
+
+                FillFilterOptions(ref homeViewModel);
+            }
+            else if (!itens.Any())
             {
                 FlashMessage.Warning("Nenhum produto encontrado");
             }
