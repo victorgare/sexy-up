@@ -1,12 +1,11 @@
 ﻿@using X.PagedList.Mvc
 @using X.PagedList.Mvc.Bootstrap4
-@Html.Partial("_MainNavigation")
 
 @model SexyUp.Web.ViewModels.Home.HomeViewModel
 @Html.Partial("_Logotipo")
 
 
-@using (Html.BeginForm("Search", "SearchResult", FormMethod.Get, new { id = "form-search" }))
+@using (Html.BeginForm("Search", "Home", FormMethod.Get, new { id = "form-search" }))
 {
     <div class="row">
         <div class="col-lg-6 m-auto">
@@ -41,14 +40,14 @@
                             <h6 class="text-uppercase">Preço</h6>
                             <div id="slider-snap"></div>
                             <div class="value d-flex justify-content-between">
-                                <div class="min">De <span id="slider-snap-value-lower" class="example-val"></span>R$</div>
-                                <div class="max">até <span id="slider-snap-value-upper" class="example-val"></span>R$</div>
+                                <div class="min">From <span id="slider-snap-value-lower" class="example-val"></span>R$</div>
+                                <div class="max">To <span id="slider-snap-value-upper" class="example-val"></span>R$</div>
 
                                 @Html.HiddenFor(c => c.MinPriceSelected, new { Value = Model.MinPriceSelected })
                                 @Html.HiddenFor(c => c.MaxPriceSelected, new { Value = Model.MaxPriceSelected })
                             </div>
 
-                            <button type="submit" class="filter-submit">filtrar</button>
+                            <button type="submit" class="filter-submit">filter</button>
                         </div>
                     </div>
                     <!-- /Sidebar end-->

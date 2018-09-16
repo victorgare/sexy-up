@@ -251,7 +251,6 @@
     <Compile Include="Controllers\LojasProximasController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\SearchResultController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -265,12 +264,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Product\ProductViewModel.cs" />
-    <Compile Include="ViewModels\SearchResult\SearchResultViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\img\logotipo.png" />
-    <Content Include="Content\img\logotipo_p.png" />
-    <Content Include="favicon.png" />
     <Content Include="Images\products-images\1.JPEG" />
     <Content Include="Images\products-images\10.JPEG" />
     <Content Include="Images\products-images\11.JPEG" />
@@ -330,6 +325,9 @@
     <Content Include="Images\products-images\not_found.png" />
     <Content Include="Content\custom-fonticons.css" />
     <Content Include="Content\custom.css" />
+    <Content Include="..\..\..\..\..\Pictures\logotipo.png">
+      <Link>Content\img\logotipo.png</Link>
+    </Content>
     <Content Include="Content\img\marker.png" />
     <Content Include="Content\style.pink.css" />
     <Content Include="favicon.ico" />
@@ -635,9 +633,6 @@
     <Content Include="Views\Product\_Partials\_Form.cshtml" />
     <Content Include="Vendor\bootstrap-select\css\bootstrap-select.css.map" />
     <Content Include="Vendor\bootstrap-select\js\bootstrap-select.js.map" />
-    <Content Include="Views\SearchResult\SearchResult.cshtml" />
-    <Content Include="Views\Shared\_LogotipoResult.cshtml" />
-    <Content Include="Views\Shared\_MainNavigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
