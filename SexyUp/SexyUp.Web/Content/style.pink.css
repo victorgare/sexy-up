@@ -771,8 +771,8 @@ i[class*='icon-'] {
 */
 nav.navbar {
   background: #fff;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  /*padding-top: 20px;
+  padding-bottom: 20px; */
   -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 }
@@ -2206,7 +2206,7 @@ section.product-description .review-text {
 * ===================================================
 */
 .sidebar {
-  padding: 100px 0;
+  padding: 40px 0;
 }
 
 .sidebar .block {
@@ -2329,8 +2329,8 @@ section.product-description .review-text {
 
 @media (max-width: 575px) {
   .sidebar, .products-grid {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
   }
 }
 
@@ -2340,7 +2340,7 @@ section.product-description .review-text {
 * ===================================================
 */
 .products-grid {
-  padding: 100px 0;
+  padding: 40px 0;
 }
 
 .products-grid .product {
