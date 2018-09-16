@@ -155,14 +155,7 @@ namespace SexyUp.Web.Controllers
             }
             else
             {
-                if (model.Errors.Any())
-                {
-                    FlashMessage.Error(model.Errors.FirstOrDefault());
-                }
-                else
-                {
-                    FlashMessage.Error("Ocorreu um erro ao cadastrar");
-                }
+                FlashMessage.Error(model.Errors.Any() ? model.Errors.FirstOrDefault() : "Ocorreu um erro ao cadastrar");
             }
 
             // If we got this far, something failed, redisplay form

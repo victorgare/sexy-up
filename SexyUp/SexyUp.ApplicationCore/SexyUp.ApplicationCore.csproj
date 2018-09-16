@@ -50,6 +50,7 @@
     <Compile Include="Entities\ApplicationUser.cs" />
     <Compile Include="Constants\Roles.cs" />
     <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\Image.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Constants\ProductStatus.cs" />
     <Compile Include="Interfaces\Repository\IProductRepository.cs" />

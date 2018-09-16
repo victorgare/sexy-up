@@ -69,6 +69,7 @@ namespace SexyUp.Infrastructure.Repository
                                         .Where(whereClause)
                                         .Distinct()
                                         .Include(c => c.Category)
+                                        .Include(c => c.Image)
                                         .OrderBy(c => c.Id)
                                         .Skip(page * pageItens)
                                         .Take(pageItens)

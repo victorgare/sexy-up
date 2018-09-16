@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SexyUp.ApplicationCore.Entities
 {
@@ -25,5 +26,8 @@ namespace SexyUp.ApplicationCore.Entities
         public string CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
+
+        [ForeignKey("IdProduct")]
+        public virtual List<Image> Image { get; set; }
     }
 }
