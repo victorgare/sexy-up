@@ -325,7 +325,9 @@
     <Content Include="Images\products-images\not_found.png" />
     <Content Include="Content\custom-fonticons.css" />
     <Content Include="Content\custom.css" />
-    <Content Include="Content\img\logotipo.png" />
+    <Content Include="..\..\..\..\..\Pictures\logotipo.png">
+      <Link>Content\img\logotipo.png</Link>
+    </Content>
     <Content Include="Content\img\marker.png" />
     <Content Include="Content\style.pink.css" />
     <Content Include="favicon.ico" />
