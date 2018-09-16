@@ -49,8 +49,8 @@
     <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.5.8.7\lib\net46\CommonServiceLocator.dll</HintPath>
     </Reference>
-    <Reference Include="EntityValidation, Version=1.0.15.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityValidation.1.0.15\lib\net46\EntityValidation.dll</HintPath>
+    <Reference Include="EntityValidation, Version=1.0.16.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityValidation.1.0.16\lib\net46\EntityValidation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
