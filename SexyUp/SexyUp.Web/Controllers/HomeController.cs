@@ -116,5 +116,11 @@ namespace SexyUp.Web.Controllers
             homeViewModel.MaxPrice = prices[1];
             homeViewModel.CategoriesMultiSelect = new MultiSelectList(categories, "Id", "Name");
         }
+
+        public ActionResult ProductDetail(string id)
+        {
+            var product = _productService.GetById(id);
+            return View(product);
+        }
     }
 }

@@ -635,6 +635,7 @@
     <Content Include="Vendor\bootstrap-select\css\bootstrap-select.css.map" />
     <Content Include="Vendor\bootstrap-select\js\bootstrap-select.js.map" />
     <Content Include="Views\Home\_Partials\_ProductModal.cshtml" />
+    <Content Include="Views\Home\ProductDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

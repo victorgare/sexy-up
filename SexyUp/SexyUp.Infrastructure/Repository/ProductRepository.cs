@@ -35,7 +35,7 @@ namespace SexyUp.Infrastructure.Repository
         {
             using (var context = new ApplicationDatabaseContext())
             {
-                return context.Product.Find(id);
+                return context.Product.Include(c => c.Image).FirstOrDefault(c => c.Id == id);
             }
         }
 

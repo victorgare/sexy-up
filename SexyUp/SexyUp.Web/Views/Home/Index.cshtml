@@ -76,7 +76,7 @@
                                                 <div class="hover-overlay d-flex align-items-center justify-content-center">
                                                     <div class="CTA d-flex align-items-center justify-content-center">
                                                         <a href="#" class="add-to-cart"><i class="fa fa-shopping-cart"></i></a>
-                                                        <a href="detail.html" class="visit-product active"><i class="icon-search"></i>View</a>
+                                                        <a href="@Url.Action("ProductDetail", "Home", new {id = item.Id})" class="visit-product active"><i class="icon-search"></i>View</a>
                                                         <a href="#" data-toggle="modal" data-target="#productModal" class="quick-view"><i class="fa fa-arrows-alt"></i></a>
                                                     </div>
                                                 </div>
@@ -88,7 +88,8 @@
                                                 </a><span class="price text-muted product-price">R$ @item.Price</span>
                                             </div>
 
-                                            @Html.Hidden("product-description", item.Description, new { @class = "product-description" })
+                                            @* product description *@
+                                            <input type="hidden" value="@item.Description" class="product-description" />
 
                                         </div>
                                     </div>

@@ -1,0 +1,55 @@
+﻿@model SexyUp.ApplicationCore.Entities.Product
+
+@{
+    ViewBag.Title = "ProductDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="product-details">
+    <div class="container">
+        <div class="row">
+
+            <div class="product-images col-lg-6">
+                <div data-slider-id="1" class="owl-carousel items-slider owl-drag">
+                    @foreach (var image in Model.Image)
+                    {
+                        <div class="item">
+                            <img src="@image.ImagePath" alt="@image.Caption">
+                        </div>
+                    }
+                </div>
+                <div data-slider-id="1" class="owl-thumbs d-flex align-items-center justify-content-center">
+                    @foreach (var image in Model.Image)
+                    {
+                        <button class="owl-thumb-item">
+                            <img src="@image.ImagePath" alt="@image.Caption">
+                        </button>
+                    }
+
+                </div>
+            </div>
+
+            <div class="details col-lg-6">
+                <div class="d-flex align-items-center justify-content-between flex-column flex-sm-row">
+                    <ul class="price list-inline no-margin">
+                        <li class="list-inline-item current">R$@Model.Price</li>
+                    </ul>
+                </div>
+                <p>
+                    @Model.Description
+                </p>
+                <div class="d-flex align-items-center justify-content-center justify-content-lg-start">
+                    <div class="quantity d-flex align-items-center">
+                        <div class="dec-btn">-</div>
+                        <input type="text" value="1" class="quantity-no">
+                        <div class="inc-btn">+</div>
+                    </div>
+                </div>
+                <ul class="CTAs list-inline">
+                    <li class="list-inline-item"><a href="#" class="btn btn-template wide"> <i class="icon-cart"></i>Add to Cart</a></li>
+                    <li class="list-inline-item"><a href="#" class="btn btn-template-outlined wide"> <i class="fa fa-heart-o"></i>Add to wishlist</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
