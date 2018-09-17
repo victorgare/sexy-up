@@ -40,8 +40,8 @@
                             <h6 class="text-uppercase">Preço</h6>
                             <div id="slider-snap"></div>
                             <div class="value d-flex justify-content-between">
-                                <div class="min">From <span id="slider-snap-value-lower" class="example-val"></span>R$</div>
-                                <div class="max">To <span id="slider-snap-value-upper" class="example-val"></span>R$</div>
+                                <div class="min">De R$<span id="slider-snap-value-lower" class="example-val"></span></div>
+                                <div class="max">Até R$<span id="slider-snap-value-upper" class="example-val"></span></div>
 
                                 @Html.HiddenFor(c => c.MinPriceSelected, new { Value = Model.MinPriceSelected })
                                 @Html.HiddenFor(c => c.MaxPriceSelected, new { Value = Model.MaxPriceSelected })
@@ -58,8 +58,6 @@
                             {
                                 {
                                     var image = item.Image.FirstOrDefault(c => c.Cover);
-
-
 
                                     <div class="item col-xl-4 col-md-6">
                                         <div class="product is-gray">
@@ -147,7 +145,7 @@
                         'min': @Model.MinPrice,
                         'max': @Model.MaxPrice
                     }
-                });
+            });
                 var snapValues = [
                     document.getElementById('slider-snap-value-lower'),
                     document.getElementById('slider-snap-value-upper')

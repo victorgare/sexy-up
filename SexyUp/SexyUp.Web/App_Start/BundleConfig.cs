@@ -98,7 +98,8 @@ namespace SexyUp.Web
 
             // bootstrap select
             bundles.Add(new ScriptBundle("~/bundles/bootstrap-select/js").Include(
-                "~/vendor/bootstrap-select/js/bootstrap-select.min.js"));
+                "~/vendor/bootstrap-select/js/bootstrap-select.min.js",
+                "~/vendor/bootstrap-select/js/i18n/defaults-pt_BR.min.js"));
 
             // noui slider
             bundles.Add(new ScriptBundle("~/bundles/nouislider/js").Include(
