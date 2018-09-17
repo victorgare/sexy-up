@@ -47,7 +47,7 @@
                                 @Html.HiddenFor(c => c.MaxPriceSelected, new { Value = Model.MaxPriceSelected })
                             </div>
 
-                            <button type="submit" class="filter-submit">filter</button>
+                            <button type="submit" class="filter-submit">filtrar</button>
                         </div>
                     </div>
                     <!-- /Sidebar end-->
@@ -77,22 +77,26 @@
                                                     <div class="CTA d-flex align-items-center justify-content-center">
                                                         <a href="#" class="add-to-cart"><i class="fa fa-shopping-cart"></i></a>
                                                         <a href="detail.html" class="visit-product active"><i class="icon-search"></i>View</a>
-                                                        <a href="#" data-toggle="modal" data-target="#exampleModal" class="quick-view"><i class="fa fa-arrows-alt"></i></a>
+                                                        <a href="#" data-toggle="modal" data-target="#productModal" class="quick-view"><i class="fa fa-arrows-alt"></i></a>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="title">
-                                                <small class="text-muted">@item.Brand</small>
+                                                <small class="text-muted product-brand">@item.Brand</small>
                                                 <a href="detail.html">
-                                                    <h3 class="h6 text-uppercase no-margin-bottom">@item.Name</h3>
-                                                </a><span class="price text-muted">R$ @item.Price</span>
+                                                    <h3 class="h6 text-uppercase no-margin-bottom product-name">@item.Name</h3>
+                                                </a><span class="price text-muted product-price">R$ @item.Price</span>
                                             </div>
+
+                                            @Html.Hidden("product-description", item.Description, new { @class = "product-description" })
+
                                         </div>
                                     </div>
                                 }
                             }
 
                         </div>
+
                         @if (Model.SearchResult.Any())
                         {
                             <nav aria-label="page navigation example" class="d-flex justify-content-center">
@@ -107,6 +111,8 @@
             </div>
         </main>
 
+
+        @Html.Partial("_Partials/_ProductModal")
     }
 }
 
@@ -145,7 +151,7 @@
                         'min': @Model.MinPrice,
                         'max': @Model.MaxPrice
                     }
-            });
+                });
                 var snapValues = [
                     document.getElementById('slider-snap-value-lower'),
                     document.getElementById('slider-snap-value-upper')
@@ -163,5 +169,7 @@
                 });
             })();
         </script>
+
+        <script src="~/Scripts/app/Home/ProductModal.js"></script>
     }
 }

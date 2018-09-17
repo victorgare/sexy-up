@@ -347,6 +347,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Scripts\app\Home\ProductModal.js" />
     <Content Include="Scripts\front.js" />
     <None Include="Properties\PublishProfiles\sexyup - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\sexyup - Web Deploy.pubxml" />
@@ -633,6 +634,7 @@
     <Content Include="Views\Product\_Partials\_Form.cshtml" />
     <Content Include="Vendor\bootstrap-select\css\bootstrap-select.css.map" />
     <Content Include="Vendor\bootstrap-select\js\bootstrap-select.js.map" />
+    <Content Include="Views\Home\_Partials\_ProductModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
