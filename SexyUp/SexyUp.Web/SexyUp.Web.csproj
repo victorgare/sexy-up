@@ -266,6 +266,7 @@
     <Compile Include="ViewModels\Product\ProductViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\img\logotipo.png" />
     <Content Include="Images\products-images\1.JPEG" />
     <Content Include="Images\products-images\10.JPEG" />
     <Content Include="Images\products-images\11.JPEG" />
@@ -325,9 +326,6 @@
     <Content Include="Images\products-images\not_found.png" />
     <Content Include="Content\custom-fonticons.css" />
     <Content Include="Content\custom.css" />
-    <Content Include="..\..\..\..\..\Pictures\logotipo.png">
-      <Link>Content\img\logotipo.png</Link>
-    </Content>
     <Content Include="Content\img\marker.png" />
     <Content Include="Content\style.pink.css" />
     <Content Include="favicon.ico" />
