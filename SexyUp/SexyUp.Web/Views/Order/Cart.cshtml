@@ -55,10 +55,42 @@
         </div>
     </div>
     @*<div class="container">
-        <div class="CTAs d-flex align-items-center justify-content-center justify-content-md-end flex-column flex-md-row">
-            <a href="shop.html" class="btn btn-template-outlined wide">Continue comprando</a> 
-            <a href="#" class="btn btn-template wide">Finalizar compra</a>
+            <div class="CTAs d-flex align-items-center justify-content-center justify-content-md-end flex-column flex-md-row">
+                <a href="shop.html" class="btn btn-template-outlined wide">Continue comprando</a>
+                <a href="#" class="btn btn-template wide">Finalizar compra</a>
+            </div>
+        </div>*@
+
+    <section class="order-details ">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 m-auto">
+                    <div class="block">
+                        <div class="block-header">
+                            <h6 class="text-uppercase">Resumo do pedido</h6>
+                        </div>
+                        <div class="block-body">
+                            @*<p>Shipping and additional costs are calculated based on values you have entered.</p>*@
+                            <ul class="order-menu list-unstyled">
+                                <li class="d-flex justify-content-between">
+                                    <span>Subtotal </span><strong id="subtotal">R$ @(Model.Sum(c => c.ProductPrice * c.Quantity))</strong>
+                                </li>
+                                <li class="d-flex justify-content-between">
+                                    <span>Frete</span><strong>R$ 20.00</strong>
+                                </li>
+                                <li class="d-flex justify-content-between">
+                                    <span>Total</span>
+                                    <strong class="text-primary price-total" id="price-total">R$ @(Model.Sum(c => c.ProductPrice * c.Quantity) + 20)</strong>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 text-center CTAs">
+                    <a href="checkout1.html" class="btn btn-template btn-lg wide">Finalizar compra<i class="fa fa-long-arrow-right"></i></a>
+                </div>
+            </div>
         </div>
-    </div>*@
+    </section>
 </div>
 

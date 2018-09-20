@@ -98,19 +98,26 @@ const Cart = new function () {
         };
     }
 
-    const redirectToCart = function (href) {
+    const getProductsArray = function () {
         const products = getProducts();
 
-        if (products) {
-            const dados = [];
-            for (let property in products) {
-                if (products.hasOwnProperty(property)) {
+        const dados = [];
+        for (let property in products) {
+            if (products.hasOwnProperty(property)) {
 
-                    dados.push(products[property]);
-                }
+                dados.push(products[property]);
             }
+        }
 
-            $.redirect(href, { cartItens: dados });
+        return dados;
+    }
+
+    const redirectPost = function (href) {
+        const products = getProductsArray();
+
+        if (products && products.length > 0) {
+            $.redirect(href, { cartItens: products });
+
         } else {
             toastr.warning("Não há itens no carrinho");
         }
@@ -123,6 +130,18 @@ const Cart = new function () {
         item.find(".total-price")[0].innerHTML = "R$ " + totalPrice.toFixed(2);
     }
 
+
+    const updateOrderSumary = function () {
+        const productsArray = getProductsArray();
+
+        let subTotal = 0;
+        productsArray.map(function (item) {
+            subTotal += item.productPrice * item.quantity;
+        });
+
+        $("#subtotal")[0].innerHTML = "R$ " + subTotal.toFixed(2);
+        $("#price-total")[0].innerHTML = "R$ " + (subTotal + 20.0).toFixed(2);
+    }
     const bind = function () {
         $(".add-to-cart").on("click", function (event) {
             event.preventDefault();
@@ -141,7 +160,7 @@ const Cart = new function () {
 
             const href = $(this).attr("href");
 
-            redirectToCart(href);
+            redirectPost(href);
         });
 
         $("i.delete").on("click", function () {
@@ -164,6 +183,7 @@ const Cart = new function () {
 
             saveProduct(productInfo);
             updateTotal(item, productInfo);
+            updateOrderSumary();
         });
 
         $(".inc-btn").click(function () {
@@ -176,6 +196,7 @@ const Cart = new function () {
 
             saveProduct(productInfo);
             updateTotal(item, productInfo);
+            updateOrderSumary();
         });
 
         $(".quantity-no").on("blur", function () {
@@ -191,6 +212,7 @@ const Cart = new function () {
 
             saveProduct(productInfo);
             updateTotal(item, productInfo);
+            updateOrderSumary();
         });
 
         updateProductQuantity();
