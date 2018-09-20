@@ -45,6 +45,7 @@ const Cart = new function () {
         localStorage.setItem("cart-products", JSON.stringify(products));
 
         updateProductQuantity();
+        Cart.updateOrderSumary();
     }
 
     const saveProduct = function (productInfo) {
