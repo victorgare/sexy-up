@@ -250,6 +250,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LojasProximasController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -258,6 +259,7 @@
     <Compile Include="Libraries\FlashMessage\FlashMessage.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\AdminUser\AdminUserViewModel.cs" />
+    <Compile Include="ViewModels\Cart\CartViewModel.cs" />
     <Compile Include="ViewModels\FornecedorUser\FornecedorUserViewModel.cs" />
     <Compile Include="ViewModels\Home\HomeViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
@@ -345,6 +347,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Scripts\app\Cart\Cart.js" />
     <Content Include="Scripts\app\Home\ProductModal.js" />
     <Content Include="Scripts\front.js" />
     <None Include="Properties\PublishProfiles\sexyup - FTP.pubxml" />
@@ -528,6 +531,7 @@
     <Content Include="Vendor\jquery-parallax.js\parallax.min.js" />
     <Content Include="Vendor\jquery.cookie\jquery.cookie.js" />
     <Content Include="Vendor\jquery.cookie\MIT-LICENSE.txt" />
+    <Content Include="Vendor\jquery.redirect\js\jquery.redirect.js" />
     <Content Include="Vendor\jquery\core.js" />
     <Content Include="Vendor\jquery\jquery.js" />
     <Content Include="Vendor\jquery\jquery.min.js" />
@@ -576,8 +580,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -634,6 +636,7 @@
     <Content Include="Vendor\bootstrap-select\js\bootstrap-select.js.map" />
     <Content Include="Views\Home\_Partials\_ProductModal.cshtml" />
     <Content Include="Views\Home\ProductDetail.cshtml" />
+    <Content Include="Views\Order\Cart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

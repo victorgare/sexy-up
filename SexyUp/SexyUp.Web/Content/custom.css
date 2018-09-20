@@ -34,3 +34,7 @@
 .img-product {
     max-height: 170px;
 }
+
+div.shopping-cart .CTAs a {
+    margin-left: 15px;
+}

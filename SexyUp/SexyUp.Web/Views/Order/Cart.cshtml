@@ -1,0 +1,64 @@
+﻿@model IEnumerable<SexyUp.Web.ViewModels.Cart.CartViewModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="shopping-cart">
+    <div class="container">
+        <div class="basket">
+            <div class="basket-holder">
+                <div class="basket-header">
+                    <div class="row">
+                        <div class="col-5">Produto</div>
+                        <div class="col-2">Preço</div>
+                        <div class="col-2">Quantidade</div>
+                        <div class="col-2">Total</div>
+                        <div class="col-1 text-center">Remover</div>
+                    </div>
+                </div>
+                <div class="basket-body">
+                    <!-- Product-->
+                    @foreach (var item in Model)
+                    {
+                        <div class="item">
+                            @Html.Hidden("product-id", item.ProductId, new { @class = "product-id" })
+                            <div class="row d-flex align-items-center">
+                                <div class="col-5">
+                                    <div class="d-flex align-items-center">
+                                        <img src="@item.ProductImage" alt="..." class="img-fluid">
+                                        <div class="title">
+                                            <a href="@Url.Action("ProductDetail", "Home", new {id = item.ProductId})">
+                                                <h5>@item.ProductName</h5>
+                                                <span class="text-muted">@item.ProductBrand</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2"><span>R$ @item.ProductPrice</span></div>
+                                <div class="col-2">
+                                    <div class="d-flex align-items-center">
+                                        <div class="quantity d-flex align-items-center">
+                                            <div class="dec-btn">-</div>
+                                            <input type="text" value="@item.Quantity" class="quantity-no">
+                                            <div class="inc-btn">+</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2"><span class="total-price">R$ @(item.ProductPrice * item.Quantity)</span></div>
+                                <div class="col-1 text-center"><i value="@item.ProductId" class="delete fa fa-trash"></i></div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<div class="container">
+        <div class="CTAs d-flex align-items-center justify-content-center justify-content-md-end flex-column flex-md-row">
+            <a href="shop.html" class="btn btn-template-outlined wide">Continue comprando</a> 
+            <a href="#" class="btn btn-template wide">Finalizar compra</a>
+        </div>
+    </div>*@
+</div>
+

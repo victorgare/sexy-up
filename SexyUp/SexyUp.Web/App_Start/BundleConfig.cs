@@ -77,7 +77,8 @@ namespace SexyUp.Web
 
             // jquery
             bundles.Add(new ScriptBundle("~/bundles/jquery/js").Include(
-                "~/vendor/jquery/jquery.min.js"));
+                "~/vendor/jquery/jquery.min.js",
+                "~/vendor/jquery.redirect/js/jquery.redirect.js"));
 
             // popper
             bundles.Add(new ScriptBundle("~/bundles/popper/js").Include(

@@ -85,7 +85,7 @@ $(function () {
     // ------------------------------------------------------ //
     $('.dec-btn').click(function () {
         var siblings = $(this).siblings('input.quantity-no');
-        if (parseInt(siblings.val(), 10) >= 1) {
+        if (parseInt(siblings.val(), 10) > 1) {
             siblings.val(parseInt(siblings.val(), 10) - 1);
         }
     });

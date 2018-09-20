@@ -39,18 +39,6 @@
                                     <p class="text-muted text-small">@(User.IsInRole("Administrador") ? "Administrador" : "Usuário")</p>
                                 </div>
                                 <nav class="list-group customer-nav">
-                                    @*<a href="customer-orders.html" class="active list-group-item d-flex justify-content-between align-items-center">
-                                            <span>
-                                                <span class="icon icon-bag"></span>Orders
-                                            </span>
-                                            <small class="badge badge-pill badge-light">5</small>
-                                        </a>*@
-
-                                    @*<a href="customer-account.html" class="list-group-item d-flex justify-content-between align-items-center">
-                                            <span>
-                                                <span class="icon icon-profile"></span>Profile
-                                            </span>
-                                        </a>*@
 
                                     @if (User.IsInRole(Roles.Administrador))
                                     {
@@ -112,6 +100,7 @@
     @Scripts.Render("~/bundles/jquery-countdown/js")
     @Scripts.Render("~/bundles/toastr/js")
     @Scripts.Render("~/bundles/main/js")
+    <script src="~/Scripts/app/Cart/Cart.js"></script>
 
     @RenderSection("scripts", false)
 
