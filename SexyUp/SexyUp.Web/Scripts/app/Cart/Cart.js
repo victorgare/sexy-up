@@ -5,8 +5,11 @@ const Cart = new function () {
 
     const getProducts = function () {
         const products = localStorage.getItem("cart-products");
+        if (products) {
+            return JSON.parse(products);
+        }
 
-        return JSON.parse(products);
+        return null;
     }
 
     const updateProductQuantity = function () {
@@ -28,8 +31,10 @@ const Cart = new function () {
 
     const getProduct = function (productId) {
         const products = getProducts();
-
-        return products[productId];
+        if (products) {
+            return products[productId];
+        }
+        return null;
     }
 
     const deleteProcuct = function (productId) {
@@ -61,7 +66,7 @@ const Cart = new function () {
         }
     }
 
-    const getProductInfo = function (product) {
+    this.getProductInfo = function (product) {
         const productId = product.find(".product-id").val();
         const productImage = product.find(".img-product").attr("src");
 
@@ -81,7 +86,7 @@ const Cart = new function () {
         }
 
         const productDescription = product.find(".product-description").val();
-        let quantity = product.find(".product-quantity").val();
+        let quantity = parseInt(product.find(".product-quantity").val(), 10);
 
         if (isNaN(quantity)) {
             quantity = 1;
@@ -127,7 +132,9 @@ const Cart = new function () {
 
         const totalPrice = productInfo.quantity * productInfo.productPrice;
 
-        item.find(".total-price")[0].innerHTML = "R$ " + totalPrice.toFixed(2);
+        if (item.find(".total-price")[0]) {
+            item.find(".total-price")[0].innerHTML = "R$ " + totalPrice.toFixed(2);
+        }
     }
 
 
@@ -139,89 +146,115 @@ const Cart = new function () {
             subTotal += item.productPrice * item.quantity;
         });
 
-        $("#subtotal")[0].innerHTML = "R$ " + subTotal.toFixed(2);
-        $("#price-total")[0].innerHTML = "R$ " + (subTotal + 20.0).toFixed(2);
+        const subTotalDom = $("#subtotal")[0];
+        const priceDom = $("#price-total")[0];
+        if (subTotalDom && priceDom) {
+            subTotalDom.innerHTML = "R$ " + subTotal.toFixed(2);
+            priceDom.innerHTML = "R$ " + (subTotal + 20.0).toFixed(2);
+        }
+
     }
     const bind = function () {
-        $(".add-to-cart").on("click", function (event) {
-            event.preventDefault();
+        $(".add-to-cart").on("click",
+            function (event) {
+                event.preventDefault();
 
-            toastr.success("Adicionado ao carrinho");
+                toastr.success("Adicionado ao carrinho");
 
-            const me = $(this).closest(".product");
+                const me = $(this).closest(".product");
 
-            const product = getProductInfo(me);
+                const product = Cart.getProductInfo(me);
 
-            saveProduct(product);
-        });
+                saveProduct(product);
+            });
 
-        $("#cartdetails").on("click", function (event) {
-            event.preventDefault();
+        $("#cartdetails").on("click",
+            function (event) {
+                event.preventDefault();
 
-            const href = $(this).attr("href");
+                const href = $(this).attr("href");
 
-            redirectPost(href);
-        });
+                redirectPost(href);
+            });
 
-        $("i.delete").on("click", function () {
-            const productId = $(this).attr("value");
+        $("i.delete").on("click",
+            function () {
+                const productId = $(this).attr("value");
 
-            deleteProcuct(productId);
-        });
+                deleteProcuct(productId);
+            });
 
         $(".dec-btn").click(function () {
             const item = $(this).closest(".item");
 
-            let productInfo = getProductInfo(item);
+            let productInfo = Cart.getProductInfo(item);
 
-            productInfo = getProduct(productInfo.productId);
 
-            const quantity = productInfo.quantity;
-            if (quantity > 1) {
-                productInfo.quantity -= 1;
+            if (typeof (productInfo.productId) !== typeof (undefined)) {
+
+                productInfo = getProduct(productInfo.productId);
+
+                if (productInfo !== null && typeof (productInfo) !== typeof (undefined)) {
+                    const quantity = productInfo.quantity;
+
+                    if (typeof (quantity) !== typeof (undefined) && quantity > 1) {
+                        productInfo.quantity -= 1;
+
+                        saveProduct(productInfo);
+                        updateTotal(item, productInfo);
+                        Cart.updateOrderSumary();
+                    }
+                }
             }
-
-            saveProduct(productInfo);
-            updateTotal(item, productInfo);
-            Cart.updateOrderSumary();
         });
 
         $(".inc-btn").click(function () {
             const item = $(this).closest(".item");
 
-            let productInfo = getProductInfo(item);
+            let productInfo = Cart.getProductInfo(item);
 
-            productInfo = getProduct(productInfo.productId);
-            productInfo.quantity += 1;
 
-            saveProduct(productInfo);
-            updateTotal(item, productInfo);
-            Cart.updateOrderSumary();
+            if (typeof (productInfo.productId) !== typeof (undefined)) {
+                productInfo = getProduct(productInfo.productId);
+                if (productInfo !== null && typeof (productInfo) !== typeof (undefined)) {
+                    productInfo.quantity += 1;
+
+                    saveProduct(productInfo);
+                    updateTotal(item, productInfo);
+                    Cart.updateOrderSumary();
+                }
+            }
+
         });
 
-        $(".quantity-no").on("blur", function () {
-            const item = $(this).closest(".item");
-            const quantity = $(this).val();
+        $(".quantity-no").on("blur",
+            function () {
+                const item = $(this).closest(".item");
+                const quantity = $(this).val();
 
-            let productInfo = getProductInfo(item);
+                let productInfo = Cart.getProductInfo(item);
 
-            productInfo = getProduct(productInfo.productId);
-            productInfo.quantity = parseInt(quantity, 10);
 
-            saveProduct(productInfo);
-            updateTotal(item, productInfo);
-            Cart.updateOrderSumary();
-        });
+                if (typeof (productInfo.productId) !== typeof (undefined)) {
+                    productInfo = getProduct(productInfo.productId);
+
+                    if (productInfo !== null && typeof (productInfo) !== typeof (undefined)) {
+                        productInfo.quantity = parseInt(quantity, 10);
+
+                        saveProduct(productInfo);
+                        updateTotal(item, productInfo);
+                        Cart.updateOrderSumary();
+                    }
+                }
+
+
+            });
 
         updateProductQuantity();
     }
 
     this.init = function () {
         bind();
-    }
-
-    this.teste = function () {
-        return getProducts();
     }
 }
 

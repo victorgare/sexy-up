@@ -4,14 +4,19 @@
         <div class="modal-content">
             <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true"><i class="icon-close"></i></span></button>
             <div class="modal-body">
-                <div class="row d-flex align-items-center">
+                <div class="row d-flex align-items-center product item">
+                    @* product info *@
+                    <input type="hidden" class="product-description" />
+                    <input type="hidden" class="product-id" />
+                    <div class="d-none product-brand" id="modal-product-brand"></div>
+
                     <div class="image col-lg-5">
-                        <img id="modal-product-image" src="img/shirt.png" alt="..." class="img-fluid d-block">
+                        <img id="modal-product-image" src="img/shirt.png" alt="..." class="img-fluid d-block img-product">
                     </div>
                     <div class="details col-lg-7">
-                        <h2 id="modal-product-name">Lose Oversized Shirt</h2>
+                        <h2 id="modal-product-name" class="product-name">Lose Oversized Shirt</h2>
                         <ul class="price list-inline">
-                            <li class="list-inline-item current" id="modal-product-price">$65.00</li>
+                            <li class="list-inline-item current product-price" id="modal-product-price">R$65.00</li>
                         </ul>
                         <p id="modal-product-description">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -19,7 +24,7 @@
                         <div class="d-flex align-items-center">
                             <div class="quantity d-flex align-items-center">
                                 <div class="dec-btn">-</div>
-                                <input type="text" value="1" class="quantity-no">
+                                <input type="text" value="1" class="quantity-no product-quantity">
                                 <div class="inc-btn">+</div>
                             </div>
                         </div>

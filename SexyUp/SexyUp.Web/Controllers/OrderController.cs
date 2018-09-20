@@ -15,7 +15,12 @@ namespace SexyUp.Web.Controllers
         [Authorize]
         public ActionResult Checkout()
         {
-            return View();
+            if (Request.UrlReferrer?.AbsolutePath == Url.Action(nameof(Cart), "Order"))
+            {
+                return View();
+            }
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

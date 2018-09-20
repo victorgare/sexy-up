@@ -2,15 +2,18 @@
 
     const fulfillProductModal = function (product) {
 
-        const productImage = product.find(".img-product").attr("src");
-        const productName = product.find(".product-name")[0].innerHTML;
-        const productPrice = product.find(".product-price")[0].innerHTML;
-        const productDescription = product.find(".product-description").val();
+        const productInfo = Cart.getProductInfo(product);
 
-        $("#modal-product-image").attr("src", productImage);
-        $("#modal-product-name").html(productName);
-        $("#modal-product-price").html(productPrice);
-        $("#modal-product-description").html(productDescription);
+        $("#modal-product-image").attr("src", productInfo.productImage);
+        $("#modal-product-name").html(productInfo.productName);
+        $("#modal-product-price").html("R$ " + productInfo.productPrice);
+        $("#modal-product-description").html(productInfo.productDescription);
+        $("#modal-product-brand")[0].innerHTML = productInfo.productBrand;
+        $("#modal-product-id").val(productInfo.productId);
+
+        $(".product-description").val(productInfo.productDescription);
+        $(".product-id").val(productInfo.productId);
+
     }
 
     const bind = new function () {

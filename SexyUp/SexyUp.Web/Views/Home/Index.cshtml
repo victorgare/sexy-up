@@ -83,7 +83,7 @@
                                             </div>
                                             <div class="title">
                                                 <small class="text-muted product-brand">@item.Brand</small>
-                                                <a href="detail.html">
+                                                <a href="@Url.Action("ProductDetail", "Home", new {id = item.Id})">
                                                     <h3 class="h6 text-uppercase no-margin-bottom product-name">@item.Name</h3>
                                                 </a><span class="price text-muted product-price">R$ @item.Price</span>
                                             </div>
