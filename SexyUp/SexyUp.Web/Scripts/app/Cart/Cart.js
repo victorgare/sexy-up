@@ -251,6 +251,13 @@ const Cart = new function () {
 
             });
 
+        $(".place-order").on("click", function (event) {
+            event.preventDefault();
+
+            const href = $(this).attr("href");
+            redirectPost(href);
+        });
+
         updateProductQuantity();
     }
 
