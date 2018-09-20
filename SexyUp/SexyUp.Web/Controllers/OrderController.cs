@@ -11,5 +11,11 @@ namespace SexyUp.Web.Controllers
         {
             return View(cartItens);
         }
+
+        [Authorize]
+        public ActionResult Checkout()
+        {
+            return View();
+        }
     }
 }

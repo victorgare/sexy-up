@@ -131,7 +131,7 @@ const Cart = new function () {
     }
 
 
-    const updateOrderSumary = function () {
+    this.updateOrderSumary = function () {
         const productsArray = getProductsArray();
 
         let subTotal = 0;
@@ -146,7 +146,7 @@ const Cart = new function () {
         $(".add-to-cart").on("click", function (event) {
             event.preventDefault();
 
-            toastr.success('Adicionado ao carrinho');
+            toastr.success("Adicionado ao carrinho");
 
             const me = $(this).closest(".product");
 
@@ -183,7 +183,7 @@ const Cart = new function () {
 
             saveProduct(productInfo);
             updateTotal(item, productInfo);
-            updateOrderSumary();
+            Cart.updateOrderSumary();
         });
 
         $(".inc-btn").click(function () {
@@ -196,14 +196,12 @@ const Cart = new function () {
 
             saveProduct(productInfo);
             updateTotal(item, productInfo);
-            updateOrderSumary();
+            Cart.updateOrderSumary();
         });
 
         $(".quantity-no").on("blur", function () {
             const item = $(this).closest(".item");
             const quantity = $(this).val();
-
-            console.log(quantity);
 
             let productInfo = getProductInfo(item);
 
@@ -212,7 +210,7 @@ const Cart = new function () {
 
             saveProduct(productInfo);
             updateTotal(item, productInfo);
-            updateOrderSumary();
+            Cart.updateOrderSumary();
         });
 
         updateProductQuantity();

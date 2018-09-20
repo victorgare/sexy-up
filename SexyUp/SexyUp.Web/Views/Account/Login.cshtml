@@ -15,6 +15,8 @@
                 <hr>
                 @using (Html.BeginForm("Login", "Account", FormMethod.Post))
                 {
+                    <input type="hidden" name="returnUrl" id="returnUrl" value="@ViewBag.ReturnUrl" />
+
                     @Html.AntiForgeryToken()
                     <div class="form-group">
                         @Html.LabelFor(c => c.Email, new { @class = "form-label" })
