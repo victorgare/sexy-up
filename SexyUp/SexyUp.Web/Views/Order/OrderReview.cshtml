@@ -1,0 +1,76 @@
+﻿@model IEnumerable<SexyUp.Web.ViewModels.Cart.CartViewModel>
+@{
+    ViewBag.Title = "OrderReview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="checkout">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a href="#" class="nav-link disabled">Endereço</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link disabled">Metodo de pagamento </a></li>
+                    <li class="nav-item"><a href="#" class="nav-link active">Revisão do pedido</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="order-review" class="tab-block">
+                        <div class="cart">
+                            <div class="cart-holder">
+                                <div class="basket-header">
+                                    <div class="row">
+                                        <div class="col-6">Product</div>
+                                        <div class="col-2">Price</div>
+                                        <div class="col-2">Quantity</div>
+                                        <div class="col-2">Unit Price</div>
+                                    </div>
+                                </div>
+                                <div class="basket-body">
+                                    <!-- Product-->
+                                    @foreach (var item in Model)
+                                    {
+                                        <div class="item row d-flex align-items-center">
+                                            <div class="col-6">
+                                                <div class="d-flex align-items-center">
+                                                    <img src="@item.ProductImage" alt="..." class="img-fluid">
+                                                    <div class="title">
+                                                        <a href="detail.html">
+                                                            <h6>@item.ProductName</h6>
+                                                            <span class="text-muted">@item.ProductBrand</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-2"><span>R$ @item.ProductPrice</span></div>
+                                            <div class="col-2"><span>@item.Quantity</span></div>
+                                            <div class="col-2"><span>R$ @(item.ProductPrice * item.Quantity)</span></div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="total row">
+                                <span class="col-md-10 col-2">Total</span>
+                                <span class="col-md-2 col-10 text-primary">R$ @(Model.Sum(c => c.ProductPrice * c.Quantity))</span>
+                            </div>
+                        </div>
+                        <div class="CTAs d-flex justify-content-between flex-column flex-lg-row">
+                            <a href="@Url.Action("PaymentMethod", "Order")" class="btn btn-template-outlined wide prev"><i class="fa fa-angle-left"></i>Voltar ao metodo de pagamento</a>
+                            <a href="@Url.Action("PlaceOrder", "Order")" class="btn btn-template wide next place-order">Finalizar pedido<i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @Html.Partial("_Partials/_OrderSummary")
+
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script>
+        (function () {
+            Cart.updateOrderSumary();
+        })();
+    </script>
+}

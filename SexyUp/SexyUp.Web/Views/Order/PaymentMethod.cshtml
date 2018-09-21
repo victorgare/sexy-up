@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "PaymentMethod";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="checkout no-padding-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a href="#" class="nav-link disabled">Endereço</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link active">Metodo de pagamento </a></li>
+                    <li class="nav-item"><a href="#" class="nav-link disabled">Revisão do pedido</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="payment-method" class="tab-block">
+                        <div id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="card">
+                                <div id="headingOne" role="tab" class="card-header">
+                                    <h6><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Credit Card</a></h6>
+                                </div>
+                                <div id="collapseOne" role="tabpanel" aria-labelledby="headingOne" class="collapse show">
+                                    <div class="card-body">
+                                        <form action="#">
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="card-name" class="form-label">Nome no cartão</label>
+                                                    <input type="text" name="card-name" placeholder="Nome no cartão" id="card-name" class="form-control">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="card-number" class="form-label">Número do cartão</label>
+                                                    <input type="text" name="card-number" placeholder="Número do cartão" id="card-number" class="form-control">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="expiry-date" class="form-label">Data de validade</label>
+                                                    <input type="text" name="expiry-date" placeholder="MM/YY" id="expiry-date" class="form-control">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="cvv" class="form-label">CVC/CVV</label>
+                                                    <input type="text" name="cvv" placeholder="123" id="cvv" class="form-control">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="CTAs d-flex justify-content-between flex-column flex-lg-row">
+                            <a href="@Url.Action("Checkout", "Order")" class="btn btn-template-outlined wide prev"><i class="fa fa-angle-left"></i>Voltar ao endereço</a>
+                            <a href="@Url.Action("OrderReview", "Order")" class="btn btn-template wide next place-order">Revisão do pedido<i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @Html.Partial("_Partials/_OrderSummary")
+
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script>
+        (function () {
+            Cart.updateOrderSumary();
+        })();
+    </script>
+}

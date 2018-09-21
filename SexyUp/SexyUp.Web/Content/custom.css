@@ -38,3 +38,7 @@
 div.shopping-cart .CTAs a {
     margin-left: 15px;
 }
+
+section.checkout .nav-item {
+    width: 33.33% !important;
+}

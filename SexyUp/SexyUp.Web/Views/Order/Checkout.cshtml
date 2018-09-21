@@ -1,4 +1,5 @@
-﻿
+﻿@model SexyUp.Web.ViewModels.Order.CheckoutViewModel
+
 @{
     ViewBag.Title = "Checkou";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,140 +10,66 @@
         <div class="row">
             <div class="col-lg-8">
                 <ul class="nav nav-pills">
-                    <li class="nav-item"><a href="#" class="nav-link active">Address</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link disabled">Delivery Method </a></li>
-                    <li class="nav-item"><a href="#" class="nav-link disabled">Payment Method </a></li>
-                    <li class="nav-item"><a href="#" class="nav-link disabled">Order Review</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link active">Endereço</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link disabled">Metodo de pagamento </a></li>
+                    <li class="nav-item"><a href="#" class="nav-link disabled">Revisão do pedido</a></li>
                 </ul>
                 <div class="tab-content">
                     <div id="address" class="active tab-block">
-                        <form action="#">
+                        @using (Html.BeginForm("Checkout", "Order", FormMethod.Post))
+                        {
                             <!-- Invoice Address-->
                             <div class="block-header mb-5">
-                                <h6>Invoice address                    </h6>
+                                <h6>Endereço de entrega </h6>
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="firstname" class="form-label">First Name</label>
-                                    <input id="firstname" type="text" name="first-name" placeholder="Enter you first name" class="form-control">
+                                    @Html.LabelFor(c => c.FirstName, new { @class = "form-label" })
+                                    @Html.TextBoxFor(c => c.FirstName, new { @class = "form-control", disabled = true })
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="lastname" class="form-label">Last Name</label>
-                                    <input id="lastname" type="text" name="last-name" placeholder="Enter your last name" class="form-control">
+                                    @Html.LabelFor(c => c.LastName, new { @class = "form-label" })
+                                    @Html.TextBoxFor(c => c.LastName, new { @class = "form-control", disabled = true })
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="email" class="form-label">Email Address</label>
-                                    <input id="email" type="email" name="email" placeholder="enter your email address" class="form-control">
+                                <div class="form-group col-md-12">
+                                    @Html.LabelFor(c => c.Email, new { @class = "form-label" })
+                                    @Html.TextBoxFor(c => c.Email, new { @class = "form-control", disabled = true })
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="street" class="form-label">Street</label>
-                                    <input id="street" type="text" name="address" placeholder="Your street name" class="form-control">
+                                <div class="form-group col-md-8">
+                                    @Html.LabelFor(c => c.Street, new { @class = "form-label" })
+                                    @Html.TextBoxFor(c => c.Street, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(c => c.Street, null, new { @class = "badge badge-danger" })
                                 </div>
-                                <div class="form-group col-md-3">
-                                    <label for="city" class="form-label">City</label>
-                                    <input id="city" type="text" name="city" placeholder="Your city" class="form-control">
+                                <div class="form-group col-md-4">
+                                    @Html.LabelFor(c => c.Number, new { @class = "form-label" })
+                                    @Html.TextBoxFor(c => c.Number, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(c => c.Number, null, new { @class = "badge badge-danger" })
                                 </div>
-                                <div class="form-group col-md-3">
-                                    <label for="zip" class="form-label">ZIP</label>
-                                    <input id="zip" type="text" name="zip" placeholder="ZIP code" class="form-control">
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="state" class="form-label">State</label>
-                                    <input id="state" type="text" name="state" placeholder="Your state" class="form-control">
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="country" class="form-label">Country</label>
-                                    <input id="country" type="text" name="country" placeholder="Your country" class="form-control">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="phone-number" class="form-label">Phone Number</label>
-                                    <input id="phone-number" type="tel" name="phone-number" placeholder="Your phone number" class="form-control">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="company" class="form-label">Company</label>
-                                    <input id="company" type="text" name="company" placeholder="Your company name" class="form-control">
-                                </div>
-                                <div class="form-group col-12 mt-3 ml-3">
-                                    <input id="another-address" type="checkbox" class="checkbox-template">
-                                    <label for="another-address" data-toggle="collapse" data-target="#shippingAddress" aria-expanded="false" aria-controls="shippingAddress">Use different shipping address</label>
+                                <div class="form-group col-md-12">
+                                    @Html.LabelFor(c => c.ZipCode, new { @class = "form-label" })
+                                    @Html.TextBoxFor(c => c.ZipCode, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(c => c.ZipCode, null, new { @class = "badge badge-danger" })
                                 </div>
                             </div>
-                            <!-- /Invoice Address-->
-                            <!-- Shippping Address-->
-                            <div id="shippingAddress" aria-expanded="false" class="collapse">
-                                <div class="block-header mb-5 mt-3">
-                                    <h6>Endereço de entrega</h6>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label for="shipping_firstname" class="form-label">First Name</label>
-                                        <input id="shipping_firstname" type="text" name="shipping_first-name" placeholder="Enter you first name" class="form-control">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="shipping_lastname" class="form-label">Last Name</label>
-                                        <input id="lshipping_astname" type="text" name="shipping_last-name" placeholder="Enter your last name" class="form-control">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="shipping_email" class="form-label">Email Address</label>
-                                        <input id="shipping_email" type="email" name="shipping_email" placeholder="enter your email address" class="form-control">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="shipping_street" class="form-label">Street</label>
-                                        <input id="shipping_street" type="text" name="shipping_address" placeholder="Your street name" class="form-control">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="shipping_city" class="form-label">City</label>
-                                        <input id="shipping_city" type="text" name="shipping_city" placeholder="Your city" class="form-control">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="shipping_zip" class="form-label">ZIP</label>
-                                        <input id="shipping_zip" type="text" name="shipping_zip" placeholder="ZIP code" class="form-control">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="shipping_state" class="form-label">State</label>
-                                        <input id="shipping_state" type="text" name="shipping_state" placeholder="Your state" class="form-control">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="shipping_country" class="form-label">Country</label>
-                                        <input id="shipping_country" type="text" name="shipping_country" placeholder="Your country" class="form-control">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="shipping_phone-number" class="form-label">Phone Number</label>
-                                        <input id="shipping_phone-number" type="tel" name="shipping_phone-number" placeholder="Your phone number" class="form-control">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="shipping_company" class="form-label">Company</label>
-                                        <input id="shipping_company" type="text" name="shipping_company" placeholder="Your company name" class="form-control">
-                                    </div>
-                                </div>
+
+                            <div class="CTAs d-flex justify-content-between flex-column flex-lg-row">
+                                <a id="cartdetails" href="@Url.Action("Cart", "Order")" class="btn btn-template-outlined wide prev"> <i class="fa fa-angle-left"></i>Voltar ao carrinho</a>
+                                <button type="submit" class="btn btn-template wide next">Metodo de pagamento<i class="fa fa-angle-right"></i></button>
                             </div>
-                            <!-- /Shipping Address-->
-                            <div class="CTAs d-flex justify-content-between flex-column flex-lg-row"><a href="cart.html" class="btn btn-template-outlined wide prev"> <i class="fa fa-angle-left"></i>Back to basket</a><a href="checkout2.html" class="btn btn-template wide next">Choose delivery method<i class="fa fa-angle-right"></i></a></div>
-                        </form>
+                        }
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="block-body order-summary">
-                    <h6 class="text-uppercase">Resumo do pedido</h6>
-                    <ul class="order-menu list-unstyled">
-                        <li class="d-flex justify-content-between">
-                            <span>Subtotal </span><strong id="subtotal">R$ 0.00</strong>
-                        </li>
-                        <li class="d-flex justify-content-between">
-                            <span>Frete</span><strong>R$ 20.00</strong>
-                        </li>
-                        <li class="d-flex justify-content-between">
-                            <span>Total</span><strong class="text-primary price-total" id="price-total">R$ 0.00</strong>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+
+            @Html.Partial("_Partials/_OrderSummary")
+
         </div>
     </div>
 </section>
 
 @section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
     <script>
         (function () {
             Cart.updateOrderSumary();
