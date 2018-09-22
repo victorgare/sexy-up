@@ -37,5 +37,10 @@ namespace SexyUp.ApplicationCore.Services
         {
             return _transactionRepository.GetUsersTransaction(userId);
         }
+
+        public Transaction GetTransactionByTransactionIdAndUserId(string transactionId, string userId)
+        {
+            return _transactionRepository.Find(c => c.IdUser.Equals(userId) && c.Id.Equals(transactionId));
+        }
     }
 }

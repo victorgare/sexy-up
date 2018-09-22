@@ -24,7 +24,7 @@
                         <td>R$ @item.TotalPrice</td>
                         <td>@item.Status</td>
                         <td>
-                            <a href="@Url.Action("Details", "Dashboard", new {id = item.Id})" class="btn btn-primary btn-sm">Detalhes</a>
+                            <a href="@Url.Action("OrderDetails", "Order", new {orderId = item.Id})" class="btn btn-primary btn-sm">Detalhes</a>
                         </td>
                     </tr>
                 }

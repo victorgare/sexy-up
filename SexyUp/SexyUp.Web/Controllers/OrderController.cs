@@ -127,5 +127,14 @@ namespace SexyUp.Web.Controllers
 
             return RedirectToAction("Index", "Dashboard");
         }
+
+
+        public ActionResult OrderDetails(string orderId)
+        {
+            var userId = User.Identity.GetUserId();
+            var order = _transactionService.GetTransactionByTransactionIdAndUserId(orderId, userId);
+
+            return View(order);
+        }
     }
 }

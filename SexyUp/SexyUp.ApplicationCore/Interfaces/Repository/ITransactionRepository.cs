@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using SexyUp.ApplicationCore.Entities;
 
 namespace SexyUp.ApplicationCore.Interfaces.Repository
@@ -7,5 +9,6 @@ namespace SexyUp.ApplicationCore.Interfaces.Repository
     {
         void Insert(Transaction transaction);
         List<Transaction> GetUsersTransaction(string userId);
+        Transaction Find(Expression<Func<Transaction, bool>> predicate);
     }
 }
