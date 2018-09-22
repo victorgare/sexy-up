@@ -1,7 +1,52 @@
-﻿
+﻿@model SexyUp.Web.ViewModels.Dashboard.DashboardViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>Dashboard</h1>
+
+<div class="row">
+    <div class="table table-responsive">
+        <table class="table table-hover table-responsive-md text-center dataTable">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Detalhes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Transactions)
+                {
+                    <tr>
+                        <td>@item.DateTransaction.ToString("dd/MM/yyyy mm:ss")</td>
+                        <td>R$ @item.TotalPrice</td>
+                        <td>@item.Status</td>
+                        <td>
+                            <a href="@Url.Action("Details", "Dashboard", new {id = item.Id})" class="btn btn-primary btn-sm">Detalhes</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section styles{
+    @Styles.Render("~/bundles/datatables/css")
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/datatables/js")
+
+    @if (Model.NewOrderPlaced)
+    {
+        <script>
+            (function () {
+                Cart.cleanProducts();
+            })();
+        </script>
+    }
+}

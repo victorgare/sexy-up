@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using SexyUp.ApplicationCore.Entities;
+using SexyUp.ApplicationCore.Interfaces.Service;
 using SexyUp.Web.Controllers.Common;
 using SexyUp.Web.ViewModels.Cart;
 using SexyUp.Web.ViewModels.Order;
@@ -9,6 +12,14 @@ namespace SexyUp.Web.Controllers
 {
     public class OrderController : BaseAccountController
     {
+
+        private readonly ITransactionService _transactionService;
+
+        public OrderController(ITransactionService transactionService)
+        {
+            _transactionService = transactionService;
+        }
+
         [HttpPost]
         public ActionResult Cart(List<CartViewModel> cartItens)
         {
@@ -85,7 +96,36 @@ namespace SexyUp.Web.Controllers
         [Authorize, HttpPost]
         public ActionResult PlaceOrder(List<CartViewModel> cartItens)
         {
-            return View();
+
+            var urlReferrer = Request.UrlReferrer?.AbsolutePath;
+            if (urlReferrer != Url.Action(nameof(OrderReview), "Order"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            var userId = User.Identity.GetUserId();
+            var user = UserManager.FindById(userId);
+
+            // monta a transacao
+            var transaction = new Transaction
+            {
+                DeliveryAddress = user.Street,
+                IdUser = userId,
+                TotalPrice = cartItens.Sum(c => c.ProductPrice * c.Quantity) + 20
+            };
+
+            // monta a lista de itens da compra
+            var transactionItens = new List<TransactionItens>();
+            cartItens.ForEach(c => transactionItens.Add(new TransactionItens
+            {
+                Quantity = c.Quantity,
+                IdProduct = c.ProductId
+            }));
+
+            // adiciona a ordem
+            _transactionService.PlaceOrder(transaction, transactionItens);
+
+            return RedirectToAction("Index", "Dashboard");
         }
     }
 }

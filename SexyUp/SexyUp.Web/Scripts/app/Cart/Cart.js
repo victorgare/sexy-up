@@ -23,7 +23,7 @@ const Cart = new function () {
         $(".cart-no")[0].innerHTML = productsQuantity;
     }
 
-    const cleanProducts = function () {
+    this.cleanProducts = function () {
         localStorage.removeItem("cart-products");
 
         updateProductQuantity();

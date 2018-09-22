@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<SexyUp.Web.ViewModels.Cart.CartViewModel>
 @{
+    /**/
+
     ViewBag.Title = "OrderReview";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -50,7 +52,7 @@
                             </div>
                             <div class="total row">
                                 <span class="col-md-10 col-2">Total</span>
-                                <span class="col-md-2 col-10 text-primary">R$ @(Model.Sum(c => c.ProductPrice * c.Quantity))</span>
+                                <span class="col-md-2 col-10 text-primary">R$ @(Model.Sum(c => c.ProductPrice * c.Quantity) )</span>
                             </div>
                         </div>
                         <div class="CTAs d-flex justify-content-between flex-column flex-lg-row">

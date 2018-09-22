@@ -7,6 +7,8 @@ namespace SexyUp.Infrastructure.Context
     public class ApplicationDatabaseContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Product> Product { get; set; }
+        public DbSet<Transaction> Transaction { get; set; }
+        public DbSet<TransactionItens> TransactionItens { get; set; }
 
         public ApplicationDatabaseContext() : base("DefaultConnection")
         {

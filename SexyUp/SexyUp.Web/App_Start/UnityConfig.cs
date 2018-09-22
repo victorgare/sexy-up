@@ -48,12 +48,16 @@ namespace SexyUp.Web
             #region Services
 
             container.RegisterType<IProductService, ProductService>();
+            container.RegisterType<ITransactionService, TransactionService>();
+            container.RegisterType<ITransactionItensService, TransactionItensService>();
 
             #endregion
 
             #region Repositories
 
             container.RegisterType<IProductRepository, ProductRepository>();
+            container.RegisterType<ITransactionRepository, TransactionRepository>();
+            container.RegisterType<ITransactionItensRepository, TransactionItensRepository>();
 
             #endregion
         }
