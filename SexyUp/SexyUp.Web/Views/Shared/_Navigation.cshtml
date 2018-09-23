@@ -1,4 +1,5 @@
-﻿<!-- navbar-->
+﻿@using SexyUp.Web.Libraries.ControlerSelected
+<!-- navbar-->
 <header class="header">
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
@@ -12,13 +13,13 @@
             <div id="navbarCollapse" class="collapse navbar-collapse">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item dropdown">
-                        <a id="navbarHomeLink" href="@Url.Action("Index", "Home")" aria-haspopup="true" aria-expanded="false" class="nav-link active">Home</a>
+                        <a id="navbarHomeLink" href="@Url.Action("Index", "Home")" aria-haspopup="true" aria-expanded="false" class="nav-link @Html.IsSelected("Home", "Index")">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Serviços</a>
+                        <a href="#" class="nav-link @Html.IsSelected("Sevicos", "Index")">Serviços</a>
                     </li>
                     <li class="nav-item">
-                        <a href="@Url.Action("Index", "LojasProximas")" class="nav-link">Lojas próximas</a>
+                        <a href="@Url.Action("Index", "LojasProximas")" class="nav-link @Html.IsSelected("LojasProximas", "Index")">Lojas próximas</a>
                     </li>
                 </ul>
                 <div class="right-col d-flex align-items-lg-center flex-column flex-lg-row">

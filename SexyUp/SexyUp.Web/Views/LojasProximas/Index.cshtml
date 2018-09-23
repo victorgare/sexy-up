@@ -3,93 +3,24 @@
     ViewBag.Title = "Index";
 }
 
-<div id="map">
+<div class="container">
+    <div class="row col-lg-8 m-auto">
+        <input type="text" id="search-place" placeholder="Digite um endereço" value="" class="form-control" />
+    </div>
+    <hr class="invisible" />
+    <div id="map">
 
+    </div>
 </div>
-
 @section Styles{
     <style>
         #map {
             height: 100%;
-            min-height: 500px;
         }
     </style>
 }
 @section Scripts {
-    @*<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPRjvoTegp8fsbeq8-6xhdV_nG-Q5XJzA"></script>*@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQh0DXhCrWMTR_56suGEE4dIcBA4gnbzU&libraries=places&callback=initMap" defer></script>
-    <script>
-        var map;
-        var infowindow;
-
-        function initMap() {
-
-            var pyrmont = { lat: -23.574105, lng: -46.623281 };
-
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: pyrmont,
-                zoom: 15
-            });
-
-            var request = {
-                location: pyrmont,
-                radius: 1000,
-                keyword: 'sexshop'
-            };
-            infowindow = new google.maps.InfoWindow();
-            var service = new google.maps.places.PlacesService(map);
-            service.nearbySearch(request, callback);
-            var request2 = {
-                location: pyrmont,
-                radius: 1000,
-                keyword: 'sex shop'
-            };
-            var service2 = new google.maps.places.PlacesService(map);
-            service2.nearbySearch(request2, callback);
-
-
-            // adiciona a marcação a localizaçao da pessoa
-            var markerImage = '/Content/img/marker.png';
-
-            var marker = new google.maps.Marker({
-                position: pyrmont,
-                map: map,
-                icon: markerImage
-            });
-
-            var contentString = '<div class="info-window">' +
-                '<h4>Você está aqui</h4>' +
-                '</div>';
-
-            marker.addListener('click', function () {
-                infowindow.setContent(contentString);
-
-                infowindow.open(map, this);
-            });
-        }
-
-
-        function callback(results, status) {
-            if (status === google.maps.places.PlacesServiceStatus.OK) {
-                for (var i = 0; i < results.length; i++) {
-                    createMarker(results[i]);
-                }
-            }
-        }
-
-        function createMarker(place) {
-            var placeLoc = place.geometry.location;
-            var marker = new google.maps.Marker({
-                map: map,
-                position: place.geometry.location
-            });
-
-            google.maps.event.addListener(marker, 'click', function () {
-                infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-                    place.vicinity + '</div>');
-                infowindow.open(map, this);
-            });
-        }
-    </script>
+    <script src="~/Scripts/app/GoogleMaps/lojasProximas.js"></script>
 }
 
