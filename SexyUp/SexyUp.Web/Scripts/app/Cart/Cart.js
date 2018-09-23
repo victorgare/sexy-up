@@ -118,12 +118,11 @@ const Cart = new function () {
         return dados;
     }
 
-    const redirectPost = function (href) {
+    const redirectPost = function (href, couponName) {
         const products = getProductsArray();
 
         if (products && products.length > 0) {
-            $.redirect(href, { cartItens: products });
-
+            $.redirect(href, { cartItens: products, couponName: couponName });
         } else {
             toastr.warning("Não há itens no carrinho");
         }
@@ -155,6 +154,18 @@ const Cart = new function () {
         }
 
     }
+
+    this.applyDiscount = function (disctountPercentage) {
+        const productsArray = getProductsArray();
+
+        productsArray.map(function (item) {
+            item.productPrice = (((100.0 - disctountPercentage) / 100) * item.productPrice).toFixed(2);
+            saveProduct(item);
+        });
+
+        Cart.updateOrderSumary();
+    }
+
     const bind = function () {
         $(".add-to-cart").on("click",
             function (event) {
@@ -254,8 +265,10 @@ const Cart = new function () {
         $(".place-order").on("click", function (event) {
             event.preventDefault();
 
+            const couponName = $("#coupon").val();
+
             const href = $(this).attr("href");
-            redirectPost(href);
+            redirectPost(href, couponName);
         });
 
         updateProductQuantity();

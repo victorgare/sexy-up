@@ -64,6 +64,7 @@
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Management" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -350,6 +351,7 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Scripts\app\Cart\Cart.js" />
+    <Content Include="Scripts\app\Coupon\Coupon.js" />
     <Content Include="Scripts\app\Home\ProductModal.js" />
     <Content Include="Scripts\front.js" />
     <None Include="Properties\PublishProfiles\sexyup - FTP.pubxml" />
