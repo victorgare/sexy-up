@@ -13,7 +13,7 @@
 
         $(".product-description").val(productInfo.productDescription);
         $(".product-id").val(productInfo.productId);
-
+        $(".add-to-wish-list").data("productid", productInfo.productId);
     }
 
     const bind = new function () {

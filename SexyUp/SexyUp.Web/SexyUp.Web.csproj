@@ -253,6 +253,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\WishListController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -416,6 +417,7 @@
     <Content Include="Scripts\app\Coupon\Coupon.js" />
     <Content Include="Scripts\app\GoogleMaps\lojasProximas.js" />
     <Content Include="Scripts\app\Home\ProductModal.js" />
+    <Content Include="Scripts\app\WishList\WishList.js" />
     <Content Include="Scripts\front.js" />
     <Content Include="App_Data\ProductDefaultWorksheet.xlsx" />
     <None Include="Properties\PublishProfiles\sexyup - FTP.pubxml" />
@@ -713,6 +715,7 @@
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Product\_Partials\ProductImages.cshtml" />
     <Content Include="Views\Product\MassInsert.cshtml" />
+    <Content Include="Views\WishList\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Vendor\font-awesome\less\" />

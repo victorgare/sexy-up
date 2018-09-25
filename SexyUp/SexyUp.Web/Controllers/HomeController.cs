@@ -1,4 +1,5 @@
-﻿using SexyUp.ApplicationCore.Entities;
+﻿using System;
+using SexyUp.ApplicationCore.Entities;
 using SexyUp.ApplicationCore.Interfaces.Service;
 using SexyUp.Web.Helpers;
 using SexyUp.Web.Libraries.FlashMessage;
@@ -6,6 +7,7 @@ using SexyUp.Web.ViewModels.Home;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using X.PagedList;
 
 namespace SexyUp.Web.Controllers
@@ -13,10 +15,12 @@ namespace SexyUp.Web.Controllers
     public class HomeController : Controller
     {
         private readonly IProductService _productService;
+        private readonly IWishListService _wishListService;
 
-        public HomeController(IProductService productService)
+        public HomeController(IProductService productService, IWishListService wishListService)
         {
             _productService = productService;
+            _wishListService = wishListService;
         }
 
         public ActionResult Index()
@@ -121,6 +125,49 @@ namespace SexyUp.Web.Controllers
         {
             var product = _productService.GetById(id);
             return View(product);
+        }
+
+        [HttpPost]
+        public JsonResult WishList(string idProduct)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return Json(new
+                {
+                    authenticated = false,
+                    success = false,
+                    message = "Usuário não autenticado"
+                });
+            }
+
+            try
+            {
+                var userId = User.Identity.GetUserId();
+
+                _wishListService.Insert(new WishList
+                {
+                    ProductId = idProduct,
+                    UserId = userId
+                });
+
+                return Json(new
+                {
+                    authenticated = true,
+                    success = true,
+                    message = "Inserido na lista de desejos"
+                });
+            }
+            catch (Exception e)
+            {
+                return Json(new
+                {
+                    authenticated = true,
+                    success = false,
+                    message = e.Message
+                });
+            }
+
+
         }
     }
 }

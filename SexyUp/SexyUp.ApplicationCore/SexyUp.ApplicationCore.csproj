@@ -60,18 +60,21 @@
     <Compile Include="Constants\ProductStatus.cs" />
     <Compile Include="Entities\Transaction.cs" />
     <Compile Include="Entities\TransactionItens.cs" />
+    <Compile Include="Entities\WishList.cs" />
     <Compile Include="Interfaces\Repository\ICategoryRepository.cs" />
     <Compile Include="Interfaces\Repository\ICouponRepository.cs" />
     <Compile Include="Interfaces\Repository\IImageRepository.cs" />
     <Compile Include="Interfaces\Repository\IProductRepository.cs" />
     <Compile Include="Interfaces\Repository\ITransactionItensRepository.cs" />
     <Compile Include="Interfaces\Repository\ITransactionRepository.cs" />
+    <Compile Include="Interfaces\Repository\IWishListRepository.cs" />
     <Compile Include="Interfaces\Service\ICategoryService.cs" />
     <Compile Include="Interfaces\Service\ICouponService.cs" />
     <Compile Include="Interfaces\Service\IImageService.cs" />
     <Compile Include="Interfaces\Service\IProductService.cs" />
     <Compile Include="Interfaces\Service\ITransactionItensService.cs" />
     <Compile Include="Interfaces\Service\ITransactionService.cs" />
+    <Compile Include="Interfaces\Service\IWishListService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\CouponService.cs" />
@@ -79,6 +82,7 @@
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\TransactionItensService.cs" />
     <Compile Include="Services\TransactionService.cs" />
+    <Compile Include="Services\WishListService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -73,6 +73,7 @@
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\TransactionItensRepository.cs" />
     <Compile Include="Repository\TransactionRepository.cs" />
+    <Compile Include="Repository\WishListRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
