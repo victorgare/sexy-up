@@ -259,6 +259,7 @@
     <Compile Include="Helpers\SessionMenager.cs" />
     <Compile Include="Libraries\ControlerSelected\ActionSelected.cs" />
     <Compile Include="Libraries\FlashMessage\FlashMessage.cs" />
+    <Compile Include="MimeTypes.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\AdminUser\AdminUserViewModel.cs" />
     <Compile Include="ViewModels\Cart\CartViewModel.cs" />
@@ -356,6 +357,7 @@
     <Content Include="Scripts\app\GoogleMaps\lojasProximas.js" />
     <Content Include="Scripts\app\Home\ProductModal.js" />
     <Content Include="Scripts\front.js" />
+    <Content Include="App_Data\ProductDefaultWorksheet.xlsx" />
     <None Include="Properties\PublishProfiles\sexyup - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\sexyup - Web Deploy.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -650,9 +652,9 @@
     <Content Include="Views\LojasProximas\Index.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Product\_Partials\ProductImages.cshtml" />
+    <Content Include="Views\Product\MassInsert.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Vendor\font-awesome\less\" />
     <Folder Include="Vendor\font-awesome\scss\" />
     <Folder Include="Vendor\nouislider\distribute\" />

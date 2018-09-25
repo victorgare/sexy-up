@@ -54,10 +54,18 @@
 
 <hr class="invisible" />
 
-<div class="row pull-right">
-    <a href="@Url.Action("Insert", "Product")" class="btn btn-primary">
-        <i class="fa fa-cube"></i> Cadastrar
-    </a>
+<div class="row ">
+    <div class="col-lg-2 offset-lg-7">
+        <a href="@Url.Action("Insert", "Product")" class="btn btn-primary">
+            <i class="fa fa-cube"></i> Cadastrar
+        </a>
+    </div>
+    <div class="col-lg-2">
+        <a href="@Url.Action("MassInsert", "Product")" class="btn btn-secondary">
+            <i class="fa fa-file-excel-o"></i> Cadastrar planilha
+        </a>
+    </div>
+
 </div>
 
 @section styles{

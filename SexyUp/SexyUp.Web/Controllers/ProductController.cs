@@ -7,6 +7,8 @@ using SexyUp.Web.ViewModels.Product;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
+using System.Web;
 using System.Web.Mvc;
 
 namespace SexyUp.Web.Controllers
@@ -193,6 +195,63 @@ namespace SexyUp.Web.Controllers
                 success = true,
                 message = string.Empty
             });
+        }
+        #endregion
+
+        #region MassInsert
+
+        public ActionResult MassInsert()
+        {
+            return View();
+        }
+
+        [ValidateAntiForgeryToken, HttpPost]
+        public ActionResult MassInsert(HttpPostedFileBase file)
+        {
+            try
+            {
+                if (file == null)
+                {
+                    FlashMessage.Error("Aconteceu um erro ao subir o arquivo");
+                    return RedirectToAction(nameof(MassInsert), "Product");
+                }
+
+                var fileExtension = Path.GetExtension(file.FileName);
+                if (fileExtension?.ToLower() != ".xlsx")
+                {
+                    FlashMessage.Warning("Arquivo inválido");
+                    return RedirectToAction(nameof(MassInsert), "Product");
+                }
+
+                var fornecedorId = User.Identity.GetUserId();
+                var fileName = $"{Guid.NewGuid().ToString()}_{fornecedorId}.xlsx";
+
+
+                var path = Path.Combine(Server.MapPath("~/App_Data"), fileName);
+                file.SaveAs(path);
+
+                _productService.MassInsert(path, fornecedorId);
+
+                // apaga o arquivo
+                new FileInfo(path).Delete();
+
+                FlashMessage.Success("Importado com sucesso");
+                return RedirectToAction(nameof(Index), "Product");
+
+            }
+            catch (Exception e)
+            {
+                FlashMessage.Error(e.Message);
+                return RedirectToAction(nameof(MassInsert), "Product");
+            }
+
+            return View();
+        }
+
+        public FileResult DefaultWorksheet()
+        {
+            var file = Path.Combine(Server.MapPath("~/App_Data"), "ProductDefaultWorksheet.xlsx");
+            return File(file, MimeTypes.GetMimeType(file), "Produtos.xlsx");
         }
         #endregion
     }
