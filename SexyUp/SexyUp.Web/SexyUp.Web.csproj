@@ -636,7 +636,6 @@
     <Content Include="Vendor\bootstrap-datepicker\css\bootstrap-datepicker3.standalone.min.css.map" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\Insert.cshtml" />
-    <Content Include="Views\Product\Update.cshtml" />
     <Content Include="Views\Product\_Partials\_Form.cshtml" />
     <Content Include="Vendor\bootstrap-select\css\bootstrap-select.css.map" />
     <Content Include="Vendor\bootstrap-select\js\bootstrap-select.js.map" />
@@ -649,6 +648,8 @@
     <Content Include="Views\Order\OrderReview.cshtml" />
     <Content Include="Views\Order\OrderDetails.cshtml" />
     <Content Include="Views\LojasProximas\Index.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Product\_Partials\ProductImages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

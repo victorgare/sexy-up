@@ -1,0 +1,39 @@
+﻿@model IEnumerable<SexyUp.ApplicationCore.Entities.Image>
+
+@*<div class="row">
+    <div class="form-group">
+        <label class="custom-file">
+            <input type="file" id="file" class="custom-file-input">
+            <span class="custom-file-control"></span>
+        </label>
+    </div>
+</div>*@
+<div class="row">
+    <div class="table table-responsive">
+        <table class="table table-hover table-responsive-md text-center dataTable">
+            <thead>
+                <tr>
+                    <th>Imagem</th>
+                    <th>Nome</th>
+                    <th>Exluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="@item.ImagePath" alt="@item.Caption" class="img-fluid" />
+                        </td>
+                        <td>@item.ImageOriginalName</td>
+                        <td>
+                            <a href="@Url.Action("DeleteImage", "Product", new {imageId= item.Id})" class="btn btn-sm btn-primary">
+                                <i class="fa fa-trash"></i> Excluir
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

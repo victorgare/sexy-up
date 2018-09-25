@@ -51,6 +51,8 @@ namespace SexyUp.Web
             container.RegisterType<ITransactionService, TransactionService>();
             container.RegisterType<ITransactionItensService, TransactionItensService>();
             container.RegisterType<ICouponService, CouponService>();
+            container.RegisterType<ICategoryService, CategoryService>();
+            container.RegisterType<IImageService, ImageService>();
 
             #endregion
 
@@ -60,6 +62,8 @@ namespace SexyUp.Web
             container.RegisterType<ITransactionRepository, TransactionRepository>();
             container.RegisterType<ITransactionItensRepository, TransactionItensRepository>();
             container.RegisterType<ICouponRepository, CouponRepository>();
+            container.RegisterType<ICategoryRepository, CategoryRepository>();
+            container.RegisterType<IImageRepository, ImageRepository>();
 
             #endregion
         }

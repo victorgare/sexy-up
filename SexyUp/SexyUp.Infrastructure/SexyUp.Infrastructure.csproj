@@ -67,7 +67,9 @@
   <ItemGroup>
     <Compile Include="Context\ApplicationDatabaseContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\CouponRepository.cs" />
+    <Compile Include="Repository\ImageRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\TransactionItensRepository.cs" />
     <Compile Include="Repository\TransactionRepository.cs" />

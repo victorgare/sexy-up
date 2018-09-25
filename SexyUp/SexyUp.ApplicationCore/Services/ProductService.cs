@@ -1,24 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using SexyUp.ApplicationCore.Constants;
+﻿using SexyUp.ApplicationCore.Constants;
 using SexyUp.ApplicationCore.Entities;
 using SexyUp.ApplicationCore.Interfaces.Repository;
 using SexyUp.ApplicationCore.Interfaces.Service;
+using System.Collections.Generic;
 
 namespace SexyUp.ApplicationCore.Services
 {
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
+        private readonly IImageService _imageService;
 
-        public ProductService(IProductRepository productRepository)
+        public ProductService(IProductRepository productRepository, IImageService imageService)
         {
             _productRepository = productRepository;
+            _imageService = imageService;
         }
 
         public void Insert(Product product)
         {
-            product.Id = Guid.NewGuid().ToString();
             product.ProductStatus = ProductStatus.Ativo;
 
             _productRepository.Insert(product);
@@ -53,6 +53,10 @@ namespace SexyUp.ApplicationCore.Services
 
             // cria o novo produto atualizado
             _productRepository.Insert(newProduct);
+
+            oldProduct.Image.ForEach(c => c.IdProduct = newProduct.Id);
+            // cadastra as imagens do produto desatualizado no novo
+            _imageService.Insert(oldProduct.Image);
         }
 
         public Product GetById(string id)

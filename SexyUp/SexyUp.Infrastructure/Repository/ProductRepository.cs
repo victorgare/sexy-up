@@ -43,7 +43,7 @@ namespace SexyUp.Infrastructure.Repository
         {
             using (var context = new ApplicationDatabaseContext())
             {
-                return context.Product.Where(c => c.ProductStatus != ProductStatus.Bloqueado).ToList();
+                return context.Product.Where(c => c.ProductStatus != ProductStatus.Bloqueado).Include(c => c.Category).ToList();
             }
         }
 

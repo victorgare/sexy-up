@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
+using SexyUp.ApplicationCore.Entities;
 
 namespace SexyUp.Web.ViewModels.Product
 {
@@ -38,6 +41,15 @@ namespace SexyUp.Web.ViewModels.Product
 
         [Display(Name = "Categoria")]
         public string Category { get; set; }
+
+        public SelectList CategorySelectList { get; set; }
+
+        public List<Image> Images { get; set; }
+
+        public ProductViewModel()
+        {
+            Images = new List<Image>();
+        }
 
     }
 }

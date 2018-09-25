@@ -10,6 +10,8 @@ namespace SexyUp.Infrastructure.Context
         public DbSet<Transaction> Transaction { get; set; }
         public DbSet<TransactionItens> TransactionItens { get; set; }
         public DbSet<Coupon> Coupon { get; set; }
+        public DbSet<Category> Category { get; set; }
+        public DbSet<Image> Image { get; set; }
 
         public ApplicationDatabaseContext() : base("DefaultConnection")
         {

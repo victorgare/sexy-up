@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SexyUp.ApplicationCore.Entities
@@ -6,7 +7,7 @@ namespace SexyUp.ApplicationCore.Entities
     [Table(nameof(Product), Schema = "dbo")]
     public class Product
     {
-        public string Id { get; set; }
+        public string Id { get; set; } = Guid.NewGuid().ToString();
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
