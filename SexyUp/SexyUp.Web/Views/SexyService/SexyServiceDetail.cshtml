@@ -1,0 +1,66 @@
+﻿@model SexyUp.ApplicationCore.Entities.SexyService
+
+@{
+    ViewBag.Title = "SexyServiceDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="product-details">
+    <div class="container">
+        <div class="row product item ">
+
+            <input type="hidden" value="@Model.Id" class="product-id" />
+            <div class="d-none product-brand"></div>
+
+            <div class="product-images col-lg-6">
+                <div data-slider-id="1" class="owl-carousel items-slider owl-drag">
+
+
+  
+  
+                            <div class="item">
+                               
+                            </div>
+
+
+                </div>
+                <div data-slider-id="1" class="owl-thumbs d-flex align-items-center justify-content-center">
+ 
+                        <button class="owl-thumb-item">
+                           
+                        </button>
+     
+                </div>
+            </div>
+
+            <div class="details col-lg-6">
+                <div class="d-flex align-items-center justify-content-between flex-column flex-sm-row">
+
+                    <ul class="price list-inline no-margin">
+                        <li class="list-inline-item">
+                            <h2 class="product-name">@Model.NameService</h2>
+                        </li>
+                        
+                    </ul>
+                </div>
+                <p>
+                    <input type="hidden" value="@Model.Description" class="product-description" />
+                    @Model.Description
+                </p>
+                <p>
+                    <input type="hidden" class="product-description" />
+                    <h3>Contato</h3>
+                    @Model.ApplicationUser.Email <br />
+                    @Model.ApplicationUser.PhoneNumber <br />
+                    @Model.ApplicationUser.City
+                </p>
+                <p>
+                    
+                </p>
+                <div class="d-flex align-items-center justify-content-center justify-content-lg-start item">
+                    <input type="hidden" value="@Model.Id" class="product-id" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

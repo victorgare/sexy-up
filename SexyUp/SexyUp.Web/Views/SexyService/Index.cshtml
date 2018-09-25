@@ -1,0 +1,163 @@
+﻿@using X.PagedList.Mvc
+@using X.PagedList.Mvc.Bootstrap4
+
+@model SexyUp.Web.ViewModels.SexyService.SexyServiceViewModel
+@Html.Partial("_Logotipo_service")
+
+
+@using (Html.BeginForm("Search", "SexyService", FormMethod.Get, new { id = "form-search" }))
+{
+    <div class="row">
+        <div class="col-lg-6 m-auto">
+            <div class="input-group">
+                @Html.TextBoxFor(c => c.SearchTerm, new { @class = "form-control" })
+                <div class="input-group-append">
+                    <button class="btn btn-primary">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    if (Model != null && Model.SearchResult != null)
+    {
+        @Html.HiddenFor(c => c.Page, new { Value = Model.Page })
+        @Html.HiddenFor(c => c.LastSearchTerm, new { Value = Model.LastSearchTerm })
+
+        <main>
+            <div class="container">
+                <div class="row">
+                    <!-- Sidebar-->
+                    <div class="sidebar col-xl-3 col-lg-4 sidebar">
+                        <div class="block">
+
+                        </div>
+                        <div class="block">
+
+                        </div>
+                    </div>
+
+                    <!-- /Sidebar end-->
+                    <!-- Grid -->
+                    <div class="products-grid col-xl-9 col-lg-8 sidebar-left">
+                        <div class="row">
+                            @foreach (var item in Model.SearchResult)
+                            {
+                                {
+                                    var image = "";   //item.Image.FirstOrDefault(c => c.Cover);
+
+                                    <div class="item col-xl-4 col-md-6">
+                                        <div class="product is-gray">
+                                            <div class="image d-flex align-items-center justify-content-center">
+                                                @*<div class="ribbon ribbon-primary text-uppercase">Sale</div>*@
+
+                                                @if (image == null)
+                                                {
+                                                    <img src="/Images/products-images/not_found.png" alt="Image not found" class="img-fluid img-product" />
+                                                }
+                                                else
+                                                {
+
+                                                }
+
+                                                <div class="hover-overlay d-flex align-items-center justify-content-center">
+                                                    <div class="CTA d-flex align-items-center justify-content-center">
+                                                        <a href="@Url.Action("SexyServiceDetail", "SexyService", new {id = item.Id})" class="visit-product active"><i class="icon-search"></i>View</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="title">
+
+                                                <a href="@Url.Action("SexyServiceDetail", "SexyService", new {id = item.Id})" />
+                                                    <h3 class="h6 text-uppercase no-margin-bottom product-name">@item.NameService</h3>
+
+                                            </div>
+
+                                            @* product info *@
+                                            <input type="hidden" value="@item.Description" class="product-description" />
+                                            <input type="hidden" value="@item.Id" class="product-id" />
+
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                        </div>
+
+                        @if (Model.SearchResult.Any())
+                        {
+                            <nav aria-label="page navigation example" class="d-flex justify-content-center">
+                                <div class="pagination pagination-custom">
+                                    @Html.PagedListPager(Model.SearchResult, page => page.ToString(), Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
+                                </div>
+                            </nav>
+                        }
+                    </div>
+                    <!-- / Grid End-->
+                </div>
+            </div>
+        </main>
+
+
+        @Html.Partial("_Partials/_SexyServiceModal")
+    }
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @if (Model != null)
+    {
+        <script>
+            (function () {
+
+                $(document).on("click", ".page-link", function (e) {
+                    e.preventDefault();
+
+                    const me = $(this);
+                    const hrefValue = me.attr("href");
+
+                    $("#Page").val(hrefValue);
+
+                    $("#form-search").submit();
+                });
+
+                const snapSlider = document.getElementById('slider-snap');
+
+                @{
+                    var minPrice = "";
+                    var maxPrice = "";
+                }
+
+                noUiSlider.create(snapSlider, {
+                    start: [@minPrice, @maxPrice],
+                    snap: false,
+                    connect: true,
+                    step: 1,
+                    range: {
+                        'min': 0,
+                        'max': 0
+                    }
+                });
+                var snapValues = [
+                    document.getElementById('slider-snap-value-lower'),
+                    document.getElementById('slider-snap-value-upper')
+                ];
+
+                var hiddenValuesToSearch = [
+                    document.getElementById('MinPriceSelected'),
+                    document.getElementById('MaxPriceSelected')
+                ];
+
+                snapSlider.noUiSlider.on('update', function (values, handle) {
+                    snapValues[handle].innerHTML = values[handle];
+
+                    hiddenValuesToSearch[handle].value = values[handle];
+                });
+            })();
+        </script>
+
+        <script src="~/Scripts/app/Product/ProductModal.js"></script>
+    }
+}

@@ -247,6 +247,7 @@
     <Compile Include="Controllers\Common\BaseAccountController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\FornecedorUserController.cs" />
+    <Compile Include="Controllers\SexyServiceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LojasProximasController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -268,8 +269,10 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Order\CheckoutViewModel.cs" />
     <Compile Include="ViewModels\Product\ProductViewModel.cs" />
+    <Compile Include="ViewModels\SexyService\SexyServiceViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\img\logotipo_service.png" />
     <Content Include="Content\img\logotipo.png" />
     <Content Include="Images\products-images\1.JPEG" />
     <Content Include="Images\products-images\10.JPEG" />
@@ -643,6 +646,10 @@
     <Content Include="Views\Order\PaymentMethod.cshtml" />
     <Content Include="Views\Order\_Partials\_OrderSummary.cshtml" />
     <Content Include="Views\Order\OrderReview.cshtml" />
+    <Content Include="Views\Shared\_Logotipo_service.cshtml" />
+    <Content Include="Views\SexyService\Index.cshtml" />
+    <Content Include="Views\SexyService\_Partials\_SexyServiceModal.cshtml" />
+    <Content Include="Views\SexyService\SexyServiceDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -18,6 +18,7 @@ namespace SexyUp.ApplicationCore.Entities
         public string Street { get; set; }
         public string ZipCode { get; set; }
         public string CompanyName { get; set; }
+        public string City { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentity(UserManager<ApplicationUser> manager)
         {
