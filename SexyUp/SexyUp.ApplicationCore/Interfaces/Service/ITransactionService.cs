@@ -7,5 +7,6 @@ namespace SexyUp.ApplicationCore.Interfaces.Service
     {
         void PlaceOrder(Transaction transaction, List<TransactionItens> transactionItens);
         List<Transaction> GetUserTransactions(string userId);
+        Transaction GetTransactionByTransactionIdAndUserId(string transactionId, string userId);
     }
 }

@@ -6,6 +6,7 @@ namespace SexyUp.ApplicationCore.Interfaces.Service
     public interface IProductService
     {
         void Insert(Product product);
+        void MassInsert(string filePath, string supplierId);
         void Update(Product product);
         Product GetById(string id);
         List<Product> GetAll();

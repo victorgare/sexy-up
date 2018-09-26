@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using SexyUp.ApplicationCore.Entities;
 using SexyUp.ApplicationCore.Interfaces.Service;
 using SexyUp.Web.Controllers.Common;
+using SexyUp.Web.Libraries.FlashMessage;
 using SexyUp.Web.ViewModels.Cart;
 using SexyUp.Web.ViewModels.Order;
 
@@ -14,10 +16,14 @@ namespace SexyUp.Web.Controllers
     {
 
         private readonly ITransactionService _transactionService;
+        private readonly ICouponService _couponService;
+        private readonly IProductService _productService;
 
-        public OrderController(ITransactionService transactionService)
+        public OrderController(ITransactionService transactionService, ICouponService couponService, IProductService productService)
         {
             _transactionService = transactionService;
+            _couponService = couponService;
+            _productService = productService;
         }
 
         [HttpPost]
@@ -94,7 +100,7 @@ namespace SexyUp.Web.Controllers
 
 
         [Authorize, HttpPost]
-        public ActionResult PlaceOrder(List<CartViewModel> cartItens)
+        public ActionResult PlaceOrder(List<CartViewModel> cartItens, string couponName)
         {
 
             var urlReferrer = Request.UrlReferrer?.AbsolutePath;
@@ -103,15 +109,37 @@ namespace SexyUp.Web.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
+            var coupon = _couponService.FindByName(couponName);
+
             var userId = User.Identity.GetUserId();
             var user = UserManager.FindById(userId);
+
+
+            var totalPrice = 0m;
+
+            foreach (var cartItem in cartItens)
+            {
+                var product = _productService.GetById(cartItem.ProductId);
+                if (coupon != null && coupon.Valid)
+                {
+                    totalPrice += (100 - coupon.DiscountPercentage) / 100 * product.Price * cartItem.Quantity;
+                }
+                else
+                {
+                    totalPrice += product.Price * cartItem.Quantity;
+                }
+            }
+
+            // adiciona o frete
+            totalPrice += 20;
 
             // monta a transacao
             var transaction = new Transaction
             {
                 DeliveryAddress = user.Street,
                 IdUser = userId,
-                TotalPrice = cartItens.Sum(c => c.ProductPrice * c.Quantity) + 20
+                TotalPrice = totalPrice,
+                CouponId = coupon?.Id
             };
 
             // monta a lista de itens da compra
@@ -126,6 +154,38 @@ namespace SexyUp.Web.Controllers
             _transactionService.PlaceOrder(transaction, transactionItens);
 
             return RedirectToAction("Index", "Dashboard");
+        }
+
+
+        public ActionResult OrderDetails(string orderId)
+        {
+            var userId = User.Identity.GetUserId();
+            var order = _transactionService.GetTransactionByTransactionIdAndUserId(orderId, userId);
+
+            return View(order);
+        }
+
+        [Authorize, HttpPost]
+        public JsonResult ValidateCoupon(string couponName)
+        {
+            var coupon = _couponService.FindByName(couponName);
+
+            if (coupon != null && coupon.Valid)
+            {
+                return Json(new
+                {
+                    Valid = true,
+                    Message = $"Adicionado {coupon.DiscountPercentage}% de desconto",
+                    DisctountPercentage = coupon.DiscountPercentage
+                });
+            }
+
+            return Json(new
+            {
+                Valid = false,
+                Message = "Coupon inválido",
+                DisctountPercentage = 0.0
+            });
         }
     }
 }

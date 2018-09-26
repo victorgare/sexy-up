@@ -1,0 +1,78 @@
+﻿@model SexyUp.ApplicationCore.Entities.Transaction
+@{
+    ViewBag.Title = "OrderDetails";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="basket basket-customer-order">
+        <div class="basket-holder">
+            <div class="basket-header">
+                <div class="row">
+                    <div class="col-6">Produto</div>
+                    <div class="col-2">Preço</div>
+                    <div class="col-2">Quantidade</div>
+                    <div class="col-2 text-right">Total</div>
+                </div>
+            </div>
+            <div class="basket-body">
+                @foreach (var item in Model.TransactionItens)
+                {<!-- Product-->
+                    <div class="item">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <img src="@(item.Product.Image.FirstOrDefault(c=> c.Cover)?.ImagePath)" alt="@(item.Product.Image.FirstOrDefault(c=> c.Cover)?.Caption)" class="img-fluid">
+                                    <div class="title">
+                                        <a href="@Url.Action("ProductDetail", "Home", new {id = item.IdProduct})">
+                                            <h6>@item.Product.Name</h6><span class="text-muted">@item.Product.Brand</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2"><span>R$ @item.Product.Price</span></div>
+                            <div class="col-2">@item.Quantity</div>
+                            <div class="col-2 text-right"><span>R$ @(item.Quantity * item.Product.Price)</span></div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="basket-footer">
+                <div class="item">
+                    <div class="row">
+                        <div class="offset-md-6 col-4"> <strong>Subtotal</strong></div>
+                        <div class="col-2 text-right"><strong>R$ @(Model.TransactionItens.Sum(c => c.Quantity * c.Product.Price))</strong></div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="row">
+                        <div class="offset-md-6 col-4"> <strong>Frete</strong></div>
+                        <div class="col-2 text-right"><strong>R$ 20.00</strong></div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="row">
+                        <div class="offset-md-6 col-4"> <strong>Total</strong></div>
+                        <div class="col-2 text-right"><strong>R$ @(Model.TransactionItens.Sum(c => c.Quantity * c.Product.Price) + 20)</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row addresses">
+        <div class="col-sm-12">
+            <div class="block-header">
+                <h6 class="text-uppercase">Endereço de entrega</h6>
+            </div>
+            <div class="block-body">
+                <p>
+                    @($"{Model.User.FirstName} {Model.User.LastName}")
+                    <br>					@Model.User.Street
+                    <br>					@Model.User.ZipCode
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- /.addresses                           -->
+</div>

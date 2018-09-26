@@ -3,14 +3,26 @@
     ViewBag.Title = "Index";
 }
 
-<input type="text" id="SearchTerm" value="Sex Shop" />
-<div id="map">
+<div class="container">
+    <div class="row col-lg-8 m-auto">
+        <input type="text" id="search-place" placeholder="Digite um endereço" value="" class="form-control" />
+    </div>
+    <hr class="invisible" />
+    <div id="map">
 
+    </div>
 </div>
 
+@section Styles{
+    <style>
+        #map {
+            height: 100%;
+        }
+    </style>
+}
+
 @section Scripts {
-    @*   @Scripts.Render("~/scripts/main/js")*@
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-4VmwOwKP9YQ"></script>
-    @Scripts.Render("~/scripts/main/js")
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQh0DXhCrWMTR_56suGEE4dIcBA4gnbzU&libraries=places&callback=initMap" defer></script>
+    <script src="~/Scripts/app/GoogleMaps/lojasProximas.js"></script>
 }
 

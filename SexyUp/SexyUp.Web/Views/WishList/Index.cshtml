@@ -1,0 +1,62 @@
+﻿@model IEnumerable<SexyUp.ApplicationCore.Entities.WishList>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="basket basket-customer-order">
+        <div class="basket-holder">
+            <div class="basket-header">
+                <div class="row">
+                    <div class="col-6">Produto</div>
+                    <div class="col-2">Preço</div>
+                    <div class="col-2">Detalhes</div>
+                    <div class="col-2 text-right">Excluir</div>
+                </div>
+            </div>
+            <div class="basket-body">
+                @foreach (var item in Model)
+                {<!-- Product-->
+                    <div class="item">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <img src="@(item.Product.Image.FirstOrDefault(c=> c.Cover)?.ImagePath)" alt="@(item.Product.Image.FirstOrDefault(c=> c.Cover)?.Caption)" class="img-fluid">
+                                    <div class="title">
+                                        <a href="@Url.Action("ProductDetail", "Home", new {id = item.Product.Id})">
+                                            <h6>@item.Product.Name</h6><span class="text-muted">@item.Product.Brand</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2"><span>R$ @item.Product.Price</span></div>
+                            <div class="col-2">
+                                <a href="@Url.Action("ProductDetail", "Home", new {id = item.Product.Id})" style="color: white !important;" class="btn btn-sm btn-primary">
+                                    Detalhes
+                                </a>
+                            </div>
+                            <div class="col-2 text-right color-white">
+                                <a href="@Url.Action("Delete", "WishList", new {id = item.Id})" style="color: white !important;" class="btn btn-sm btn-primary">
+                                    <i class="fa fa-trash-o"></i> Detalhes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section styles{
+    @Styles.Render("~/bundles/datatables/css")
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/datatables/js")
+}

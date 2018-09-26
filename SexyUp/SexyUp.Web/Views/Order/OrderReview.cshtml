@@ -1,8 +1,5 @@
 ﻿@model IEnumerable<SexyUp.Web.ViewModels.Cart.CartViewModel>
 @{
-    /**/
-
-    ViewBag.Title = "OrderReview";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -55,7 +52,9 @@
                                 <span class="col-md-2 col-10 text-primary">R$ @(Model.Sum(c => c.ProductPrice * c.Quantity) )</span>
                             </div>
                         </div>
-                        <div class="CTAs d-flex justify-content-between flex-column flex-lg-row">
+
+
+                        <div class="CTAs d-flex justify-content-between flex-column flex-lg-row m-auto">
                             <a href="@Url.Action("PaymentMethod", "Order")" class="btn btn-template-outlined wide prev"><i class="fa fa-angle-left"></i>Voltar ao metodo de pagamento</a>
                             <a href="@Url.Action("PlaceOrder", "Order")" class="btn btn-template wide next place-order">Finalizar pedido<i class="fa fa-angle-right"></i></a>
                         </div>
@@ -63,9 +62,10 @@
                 </div>
             </div>
 
-            @Html.Partial("_Partials/_OrderSummary")
+            @Html.Partial("_Partials/_OrderSummary", true)
 
         </div>
+
     </div>
 </section>
 
@@ -75,4 +75,5 @@
             Cart.updateOrderSumary();
         })();
     </script>
+    <script type="text/javascript" src="~/Scripts/app/Coupon/Coupon.js"></script>
 }
